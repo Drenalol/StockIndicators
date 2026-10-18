@@ -97,10 +97,17 @@ public class ShareController : ControllerBase
 
   private IActionResult BrandCard()
   {
-    var baseUrl = _alertOptions.Value.PublicBaseUrl;
+    // The brand card is a file this very origin serves, so its URL is built from the request
+    // (the forwarded headers are trusted whenever a proxy stands in front): no deployment has
+    // to configure anything to get a link preview. AlertOptions:PublicBaseUrl wins when it is
+    // set - notifications already use it - but it is a notification setting, and a public-site
+    // instance has no notifications to configure, so it must not be what decides whether a
+    // shared link has a picture at all.
+    var configured = _alertOptions.Value.PublicBaseUrl;
 
-    if (string.IsNullOrWhiteSpace(baseUrl))
-      return NotFound();
+    var baseUrl = string.IsNullOrWhiteSpace(configured)
+      ? $"{Request.Scheme}://{Request.Host}{Request.PathBase}"
+      : configured;
 
     // Never cached: this is a degradation, and caching it would keep serving the brand card
     // after the renderer is healthy again

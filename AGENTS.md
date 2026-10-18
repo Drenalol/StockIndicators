@@ -42,12 +42,6 @@ cd src && dotnet build && dotnet test
 cd web && npm run lint && npm run typecheck && npm run check:i18n && npm run check:seo && npm run build
 ```
 
-Before every commit and before any push, run the secret gate: grep the staged tree for the
-private-infrastructure identifiers of the originating SaaS (domains, IPs, account/database
-names, token prefixes, bot ids). The pattern list is deliberately not kept in this repository -
-it lives in the owner's private workspace notes; ask for it, and the run must print nothing (a
-`dev-password` example in README's setup docs is fine). This repository is a clean-history
-open-source export of private projects: any leak into it is permanent.
 **Never push without the owner's explicit word.** Commit as the configured author
 (`Bogdan Yanysh <4239027+Drenalol@users.noreply.github.com>`).
 

@@ -12,6 +12,7 @@ import { useSiteMode } from '@/lib/siteMode';
 import { cn } from '@/lib/utils';
 import { BOOSTY_URL } from '@/lib/support';
 import { BoostyIcon } from '@/components/BoostyIcon';
+import { GitHubIcon } from '@/components/GitHubIcon';
 import { Logo } from '@/components/Logo';
 import { ExchangeLogo } from '@/components/ExchangeLogo';
 import { SectionToc, type SectionTocItem } from '@/components/SectionToc';
@@ -383,7 +384,9 @@ export default function LandingPage() {
           <div className="mx-auto w-full max-w-5xl px-4 py-14 md:py-20">
             <h2 className="text-xl font-bold md:text-3xl">{l.install.title}</h2>
             <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">{l.install.subtitle}</p>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {/* one command per row: each code block gets the full width and never needs a
+                horizontal scroll on any screen */}
+            <div className="mt-8 grid gap-4">
               {[
                 { icon: Code2, title: l.install.step1Title, code: l.install.step1Code },
                 { icon: Terminal, title: l.install.step2Title, code: l.install.step2Code },
@@ -413,9 +416,11 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center justify-center gap-3">
               {landingOnly ? (
                 // no sign-in here: the repository is where the product starts
-                <Button asChild size="lg" className="h-11 px-8">
+                // the GitHub mark is the convention: a square icon button, the label
+                // lives in the accessible name (the mark itself is decorative)
+                <Button asChild size="icon" className="size-11" aria-label={l.cta.github}>
                   <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                    {l.cta.github}
+                    <GitHubIcon className="h-5 w-5" />
                   </a>
                 </Button>
               ) : (
@@ -423,9 +428,9 @@ export default function LandingPage() {
                   <Button asChild size="lg" className="h-11 px-8">
                     <Link to={`/${routeLocale}/login`}>{l.cta.button}</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="h-11 px-8">
+                  <Button asChild size="icon" variant="outline" className="size-11" aria-label={l.cta.github}>
                     <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                      {l.cta.github}
+                      <GitHubIcon className="h-5 w-5" />
                     </a>
                   </Button>
                 </>

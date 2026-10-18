@@ -1,0 +1,1013 @@
+{
+  "common": {
+    "appName": "Stock Indicators",
+    "loading": "Caricamento...",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "create": "Crea",
+    "createSubscription": "Crea abbonamento",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "updated": "modificato",
+    "unsavedChangesTitle": "Modifiche non salvate",
+    "unsavedChangesMessage": "Hai delle modifiche non salvate. Vuoi davvero uscire?",
+    "saved": "Salvato",
+    "created": "Creato",
+    "back": "Indietro",
+    "undo": "Annulla azione",
+    "reset": "Reimposta",
+    "leave": "Esci",
+    "hint": "Cosa significa questo valore?",
+    "chartPreMarket": "Pre-market",
+    "chartAfterHours": "After-hours",
+    "chartOvernight": "Sessione notturna"
+  },
+  "auth": {
+    "signIn": "Accedi",
+    "logout": "Esci",
+    "sessionExpired": "Sessione scaduta. Accedi di nuovo.",
+    "lockoutError": "Troppi tentativi. Riprova tra {{seconds}} secondi",
+    "lockedOut": "Bloccato ({{seconds}} s)",
+    "passwordLabel": "Password",
+    "passwordRequired": "Inserisci la password",
+    "invalidPasswordError": "Password errata",
+    "noPasswordConfigured": "Questa istanza non ha ancora una password: imposta SI_PASSWORD nel file .env di compose e riavvia, poi accedi qui.",
+    "genericError": "Qualcosa è andato storto. Riprova."
+  },
+  "nav": {
+    "subscriptions": "Abbonamenti",
+    "indicators": "Indicatori",
+    "instruments": "Strumenti",
+    "templates": "Modelli",
+    "settings": "Impostazioni",
+    "menu": "Menu"
+  },
+  "pagination": {
+    "prev": "Pagina precedente",
+    "next": "Pagina successiva"
+  },
+  "footer": {
+    "disclaimer": "Disclaimer",
+    "licenses": "Licenze open source",
+    "support": "Sostieni"
+  },
+  "onboarding": {
+    "skip": "Salta",
+    "back": "Indietro",
+    "next": "Avanti",
+    "done": "Fatto",
+    "steps": {
+      "subscriptions": {
+        "title": "Abbonamenti",
+        "text": "Qui trovi i titoli che segui: grafici e regole di avviso di ogni abbonamento."
+      },
+      "indicators": {
+        "title": "Indicatori",
+        "text": "Catalogo degli indicatori: cosa fa ciascuno e come regolarlo nei tuoi abbonamenti."
+      },
+      "instruments": {
+        "title": "Strumenti",
+        "text": "Sfoglia gli strumenti per ticker e borsa, e abbonati direttamente dall'elenco."
+      },
+      "settings": {
+        "title": "Impostazioni",
+        "text": "Impostazioni: lingua, fuso orario, e-mail, chat Telegram, sessioni ed eliminazione dell'account. Il pulsante di uscita è accanto al titolo - l'icona a destra nell'intestazione cambia il tema."
+      }
+    },
+    "subscriptionSteps": {
+      "presets": {
+        "title": "Preset",
+        "text": "Scegli un preset di regole pronto per iniziare, oppure saltalo e costruisci la tua condizione qui sotto."
+      },
+      "conditions": {
+        "title": "Quando avvisare",
+        "text": "Questa è l'attivazione: combina condizioni sui valori degli indicatori con AND/OR. Ogni condizione ha uno strumento, un indicatore e i suoi parametri."
+      },
+      "cooldown": {
+        "title": "Pausa tra gli avvisi",
+        "text": "L'attesa minima tra gli avvisi, così lo stesso segnale non notifica due volte di fila. Sotto i 30 minuti è un'opzione premium."
+      },
+      "notifications": {
+        "title": "Dove notificare",
+        "text": "Scegli dove vanno gli avvisi: Telegram, push, webhook, Discord o WhatsApp. Puoi aggiungere più canali insieme."
+      },
+      "create": {
+        "title": "Crea",
+        "text": "Salva l'abbonamento: inizierà subito a controllare la regola, e potrai regolare tutto più tardi dalla pagina dell'abbonamento."
+      }
+    }
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "system": "Sistema"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "notSession": "Le impostazioni sono disponibili dopo l'accesso.",
+    "loadFailed": "Impossibile caricare le impostazioni",
+    "tabs": {
+      "general": "Generale",
+      "providers": "Provider",
+      "notifications": "Notifiche",
+      "about": "Informazioni"
+    },
+    "profile": {
+      "title": "Profilo",
+      "description": "Lingua dell'interfaccia e delle notifiche, e fuso orario delle date negli avvisi e nei grafici.",
+      "language": "Lingua",
+      "timezone": "Fuso orario",
+      "timezonePlaceholder": "Non impostato",
+      "timezoneSearch": "Cerca fuso orario...",
+      "timezoneNotFound": "Nessun risultato",
+      "saved": "Preferenze salvate",
+      "saveFailed": "Impossibile salvare le preferenze"
+    },
+    "providers": {
+      "title": "Provider",
+      "description": "Porta le tue chiavi API: i valori sono salvati nel database, le variabili d'ambiente restano il fallback. Le modifiche si applicano dopo il riavvio.",
+      "kindData": "Dati di mercato",
+      "kindEnricher": "Arricchimento",
+      "kindChannel": "Canali di avviso",
+      "kindAuxiliary": "Extra",
+      "enabled": "Abilitato",
+      "configured": "Configurato",
+      "needsKey": "Chiave necessaria",
+      "auto": "Generato automaticamente",
+      "fromEnv": "ambiente",
+      "showSecrets": "Mostra le chiavi",
+      "hideSecrets": "Nascondi le chiavi",
+      "docs": "Ottieni una chiave",
+      "save": "Salva",
+      "saved": "Salvato - riavvia l'istanza per applicare",
+      "saveFailed": "Salvataggio non riuscito",
+      "revert": "Scarta le modifiche",
+      "test": "Prova la connessione",
+      "testing": "Prova in corso…",
+      "testSuccess": "OK ({{ms}} ms): {{message}}",
+      "testFailure": "{{message}}",
+      "testFailed": "La prova è fallita",
+      "clear": "Rimuovi",
+      "cleared": "Verrà rimosso al salvataggio",
+      "enterValue": "Non impostato",
+      "restartNote": "Abilitazione e chiavi si applicano dopo il riavvio",
+      "items": {
+        "tinkoff": {
+          "name": "Tinkoff",
+          "markets": [
+            "MOEX (azioni, ETF, futures, valute)"
+          ],
+          "fields": {
+            "Token": "Token API",
+            "IsSandbox": "Sandbox"
+          }
+        },
+        "alpaca": {
+          "name": "Alpaca",
+          "markets": [
+            "Azioni USA (incl. negoziazione notturna)"
+          ],
+          "fields": {
+            "ApiKey": "ID chiave API",
+            "ApiSecret": "Segreto della chiave API",
+            "Environment": "Ambiente"
+          }
+        },
+        "businessquant": {
+          "name": "Business Quant",
+          "markets": [
+            "Azioni USA"
+          ],
+          "fields": {
+            "ApiKey": "Chiave API"
+          }
+        },
+        "binance": {
+          "name": "Binance",
+          "markets": [
+            "Crypto"
+          ],
+          "fields": {}
+        },
+        "yahoo": {
+          "name": "Yahoo Finance",
+          "markets": [
+            "Profili degli strumenti, loghi"
+          ],
+          "fields": {}
+        },
+        "telegram": {
+          "name": "Bot Telegram",
+          "markets": [
+            "Avvisi",
+            "Gestione avvisi"
+          ],
+          "fields": {
+            "Token": "Token del bot",
+            "BotLink": "Link del bot (https://t.me/...)",
+            "IncludeWebLinks": "Link all'istanza nei pulsanti del bot (si aprono nel browser)",
+            "InstanceUrl": "URL dell'istanza (https://indicators.example)"
+          }
+        },
+        "whatsapp": {
+          "name": "WhatsApp",
+          "markets": [
+            "Avvisi"
+          ],
+          "fields": {
+            "AccessToken": "Token di accesso",
+            "PhoneNumberId": "ID del numero di telefono",
+            "TemplateName": "Nome del modello",
+            "TemplateLanguage": "Lingua del modello",
+            "ApiVersion": "Versione Graph API"
+          }
+        },
+        "smtp": {
+          "name": "Email (SMTP)",
+          "markets": [
+            "Riservato al canale di avvisi via email"
+          ],
+          "fields": {
+            "Host": "Host",
+            "Port": "Porta",
+            "UseSsl": "Usa SSL",
+            "Username": "Nome utente",
+            "Password": "Password",
+            "From": "Mittente"
+          }
+        },
+        "webpush": {
+          "name": "Web Push",
+          "markets": [
+            "Avvisi nel browser"
+          ],
+          "fields": {
+            "Subject": "Contatto (mailto: o https://)",
+            "VapidPublicKey": "Chiave pubblica VAPID",
+            "VapidPrivateKey": "Chiave privata VAPID"
+          }
+        },
+        "logos": {
+          "name": "Loghi",
+          "markets": [
+            "Loghi degli strumenti"
+          ],
+          "fields": {
+            "LogoDevPublishableKey": "Chiave pubblicabile Logo.dev",
+            "CoinGeckoApiKey": "Chiave API CoinGecko"
+          }
+        }
+      },
+      "urlInvalid": "Non è un indirizzo completo - usa l'URL completa https://...",
+      "urlRequired": "Necessario per i pulsanti-link: Telegram accetta solo un indirizzo raggiungibile dall'esterno",
+      "urlNeedsPublic": "Telegram controlla questi link da sé e rifiuta gli indirizzi locali, e un indirizzo di rete locale non funziona fuori dalla tua rete - usa un indirizzo raggiungibile dall'esterno: un dominio o un tunnel.",
+      "restartPending": "Le modifiche sono salvate ma non ancora applicate: riavvia l'applicazione."
+    },
+    "onboarding": {
+      "title": "Come orientarsi in questa pagina",
+      "description": "Una mappa rapida delle impostazioni: a cosa serve ogni blocco.",
+      "data": "Le fonti di dati si collegano con le tue chiavi. Tinkoff (MOEX), Alpaca e Business Quant (azioni USA) richiedono una chiave API del tuo conto broker; Binance (crypto) e Yahoo (profili degli strumenti, loghi) funzionano senza chiave. Più fonti colleghi, più ticker puoi seguire.",
+      "channels": "Canali di notifica: il bot Telegram è il principale: incolla il token di @BotFather nella sua card, riavvia l'app e poi collega la chat nella scheda «Notifiche» (una chat per account). Web Push invia gli avvisi a questo browser; l'email (SMTP) è riservata a un canale futuro; WhatsApp è per i messaggi business di Meta e resta spento finché non lo attivi.",
+      "alerts": "Gli avvisi vivono nelle pagine di strumenti e abbonamenti: regole, pause, cronologia delle attivazioni. Il menu del bot gestisce gli stessi avvisi dal telefono.",
+      "restart": "Interruttori e chiavi dei provider vengono salvati nel database ma applicati al riavvio dell'app. L'icona d'avviso ambra segnala le modifiche che aspettano quel riavvio.",
+      "dismiss": "Ho capito",
+      "show": "Mostra la guida"
+    },
+    "telegram": {
+      "title": "Telegram",
+      "description": "Una chat per account: lì vanno il menu del bot e tutti gli avvisi. Collegare una chat nuova scollega la precedente.",
+      "generate": "Collega chat",
+      "replace": "Sostituisci chat",
+      "empty": "Ancora nessuna chat collegata. Crea un link monouso, aprilo e tocca Start.",
+      "linkExpires": "Il link è valido fino alle {{time}}. È monouso.",
+      "copyLinkAria": "Copia il link diretto alla chat",
+      "copied": "Link copiato",
+      "copyFailed": "Impossibile copiare il link",
+      "linkFailed": "Impossibile creare il link della chat",
+      "linkUnavailable": "Link non disponibile: il bot non è configurato",
+      "chat": "Chat",
+      "unlinkAria": "Scollega chat",
+      "unlinkTitle": "Scollega chat",
+      "unlink": "Scollega",
+      "unlinkConfirm": "Scollegare la chat {{name}} ({{id}})?",
+      "unlinkFailed": "Impossibile scollegare la chat"
+    },
+    "templates": {
+      "title": "Modelli di avviso",
+      "description": "Modelli di messaggio per i tuoi canali di consegna",
+      "manage": "Gestisci modelli"
+    },
+    "legal": {
+      "title": "Legale",
+      "description": "Regole di utilizzo, politica sulla privacy, disclaimer e licenze open source."
+    }
+  },
+  "subscriptions": {
+    "title": "Abbonamenti",
+    "firstRun": {
+      "title": "Nessun dato di mercato presente",
+      "text": "Collega un provider di dati con la tua API key per iniziare a monitorare gli strumenti.",
+      "action": "Apri Impostazioni → Provider"
+    },
+    "noSubscriptions": "Ancora nessun abbonamento",
+    "noSubscriptionsHint": "Crea il tuo primo avviso per iniziare",
+    "searchPlaceholder": "Cerca abbonamenti...",
+    "noResults": "Nessun abbonamento corrisponde alla ricerca",
+    "filters": {
+      "status": "Stato",
+      "aria": "Filtri",
+      "clear": "Azzera",
+      "type": "Tipo",
+      "indicator": "Indicatore",
+      "indicatorAll": "Tutti gli indicatori",
+      "exchange": "Borsa",
+      "exchangeAll": "Tutte le borse",
+      "rule": "Regola",
+      "ruleAll": "Qualsiasi regola",
+      "ruleFlat": "Una condizione",
+      "ruleMulti": "Più condizioni",
+      "triggered": "Attivati negli ultimi 7 giorni"
+    },
+    "markAllRead": {
+      "tooltip": "Contrassegna tutti gli avvisi come letti",
+      "success": "Tutti gli avvisi contrassegnati come letti"
+    },
+    "sort": {
+      "aria": "Ordina gli abbonamenti",
+      "alertDate": "Per data dell'avviso",
+      "alertCount": "Per numero di avvisi",
+      "ticker": "Per ticker",
+      "created": "Per data di creazione"
+    },
+    "status": {
+      "active": "Attivo",
+      "inactive": "Inattivo"
+    },
+    "table": {
+      "instrument": "Strumento",
+      "indicator": "Indicatore",
+      "cooldown": "Pausa",
+      "status": "Stato",
+      "created": "Creato",
+      "actions": "Azioni"
+    },
+    "contextMenu": {
+      "addAlert": "Aggiungi avviso",
+      "delete": "Elimina {ticker}",
+      "disable": "Disattiva",
+      "enable": "Attiva",
+      "deleteAlert": "Elimina {name}"
+    },
+    "moreActions": "Altre azioni",
+    "deleteAlert": {
+      "title": "Elimina avviso",
+      "message": "Eliminare l'avviso <code>{indicator} {cooldown}</code>? Questa azione non può essere annullata."
+    },
+    "toggle": {
+      "enabled": "Abbonamento attivato",
+      "disabled": "Abbonamento disattivato"
+    },
+    "deleteGroup": {
+      "title": "Elimina tutti gli avvisi",
+      "message": {
+        "one": "Eliminare {{count}} avviso di <code>{ticker}</code>? Questa azione non può essere annullata.",
+        "few": "Eliminare {{count}} avvisi di <code>{ticker}</code>? Questa azione non può essere annullata.",
+        "many": "Eliminare {{count}} avvisi di <code>{ticker}</code>? Questa azione non può essere annullata."
+      },
+      "success": "Tutti gli avvisi di {ticker} eliminati"
+    },
+    "delete": {
+      "confirm": "Conferma eliminazione",
+      "message": "Eliminare l'avviso di <code>{ticker}</code>? Questa azione non può essere annullata.",
+      "success": "Abbonamento eliminato",
+      "restored": "Abbonamento ripristinato"
+    },
+    "grouped": {
+      "alertsCount": {
+        "one": "{{count}} avviso",
+        "few": "{{count}} avvisi",
+        "many": "{{count}} avvisi"
+      },
+      "new": "Nuovo",
+      "noAlertsForTicker": "Ancora nessun avviso"
+    },
+    "alert": {
+      "conditions": "{{count}} condizione",
+      "conditionsPlural": "{{count}} condizioni",
+      "viewDetails": "Vedi dettagli",
+      "indicator": "Indicatore",
+      "cooldown": "Pausa",
+      "status": "Stato",
+      "created": "Creato",
+      "conditionDescription": "Condizione",
+      "editCondition": "Modifica condizione"
+    },
+    "triggerHistory": {
+      "title": "Cronologia attivazioni",
+      "empty": "Ancora nessuna attivazione",
+      "date": "Data e ora",
+      "limitReached": "Mostra i {{count}} record più recenti",
+      "chart": {
+        "title": "Grafico dell'attivazione",
+        "loading": "Generazione del grafico…",
+        "noData": "Il grafico non è disponibile per questa attivazione",
+        "errors": {
+          "noFiredCondition": "Questo avviso non contiene alcuna condizione da tracciare sul grafico",
+          "conditionRemoved": "La condizione che ha generato questo avviso non fa più parte della regola"
+        },
+        "notFound": "Attivazione non trovata (i record più vecchi degli ultimi 100 non vengono conservati)",
+        "value": "Valore",
+        "time": "Attivato alle",
+        "candle": "Candela",
+        "zoomHint": "Pizzica per lo zoom, trascina per spostare",
+        "zoomHintDesktop": "Scorri per lo zoom, trascina per spostare",
+        "legend": {
+          "o": "Ap.",
+          "h": "Ma",
+          "l": "Mi",
+          "c": "Ch",
+          "vol": "Vol"
+        },
+        "settings": {
+          "title": "Impostazioni del grafico",
+          "tooltip": "Tooltip OHLC",
+          "magnet": "Aggancia il cursore alle candele"
+        }
+      },
+      "delivery": {
+        "title": "Consegna",
+        "sent": "Consegnato",
+        "failed": "Errore di consegna",
+        "skipped": "Saltato"
+      },
+      "errors": {
+        "channelUnavailable": "Questo canale non è disponibile su questo server",
+        "noResult": "Il canale non ha restituito un risultato di consegna",
+        "noTelegramChat": "Nessuna chat Telegram è collegata a questo account",
+        "telegramChatUnlinked": "La chat Telegram non è più collegata a questo account",
+        "telegramMerged": "Unita a un avviso più recente per lo stesso ticker e indicatore",
+        "pushTargetMissing": "La destinazione dell'iscrizione push manca in questa uscita",
+        "pushSubscriptionGone": "L'iscrizione push del browser non è più registrata su questo account",
+        "pushNotConfigured": "Web push non è configurato sul server",
+        "pushEndpointExpired": "L'endpoint push del browser è scaduto ed è stato rimosso",
+        "pushRateLimited": "Il servizio push ha limitato la frequenza di invio (429), l'avviso è stato scartato",
+        "webhookUrlMissing": "L'URL di destinazione del webhook manca in questa uscita",
+        "discordUrlMissing": "L'URL del webhook Discord manca in questa uscita",
+        "discordRateLimited": "Discord ha limitato la frequenza di questo webhook (429), l'avviso è stato scartato",
+        "whatsappNotConfigured": "La consegna WhatsApp non è configurata sul server",
+        "whatsappNumberInvalid": "Il numero di telefono WhatsApp in questa uscita non è un numero E.164 valido",
+        "cancelled": "La consegna è stata annullata"
+      }
+    },
+    "snapshot": {
+      "open": "Grafico attuale",
+      "title": "Grafico attuale con indicatori",
+      "loading": "Caricamento dei grafici…",
+      "noData": "Il grafico non è disponibile al momento, riprova più tardi"
+    }
+  },
+  "indicators": {
+    "title": "Indicatori",
+    "noneAvailable": "Nessun indicatore disponibile",
+    "loading": "Caricamento...",
+    "parameters": {
+      "Periods": "Periodi",
+      "Period": "Periodo",
+      "SignalPeriod": "Periodo del segnale",
+      "MinChannel": "Canale minimo",
+      "MaxChannel": "Canale massimo",
+      "Deviation": "Deviazione",
+      "TimeFrame": "Timeframe",
+      "CandlePart": "Parte della candela",
+      "Percent": "Percentuale",
+      "Accuracy": "Precisione",
+      "FastPeriods": "Periodi rapidi",
+      "SlowPeriods": "Periodi lenti",
+      "SignalPeriods": "Periodi del segnale",
+      "SmoothPeriod": "Periodo di smussamento",
+      "StandardDeviation": "Deviazione standard",
+      "Overbought": "Livello di ipercomprato",
+      "Oversold": "Livello di ipervenduto",
+      "Multiplier": "Moltiplicatore",
+      "AdxThreshold": "Soglia ADX",
+      "MinPercent": "% minimo del prezzo",
+      "TenkanPeriod": "Periodo Tenkan",
+      "KijunPeriod": "Periodo Kijun",
+      "SenkouBPeriod": "Periodo Senkou B",
+      "EmaPeriod": "Periodo EMA",
+      "RsiPeriod": "Periodo RSI",
+      "StochPeriod": "Periodo stocastico",
+      "Direction": "Direzione",
+      "AtrPeriod": "Periodo ATR",
+      "LongPeriods": "Periodo lungo",
+      "ErPeriods": "Periodo del rapporto di efficienza",
+      "MaxAccelerationFactor": "Accelerazione massima",
+      "Type": "Tipo",
+      "Weeks": "Settimane",
+      "Extreme": "Estremo",
+      "Mode": "Modalità",
+      "PullbackPercent": "Ritracciamento %",
+      "ThresholdType": "Tipo di soglia",
+      "Value": "Distanza"
+    },
+    "searchPlaceholder": "Cerca indicatori...",
+    "publicHint": "Cosa misura ogni indicatore, i suoi parametri e un grafico di esempio - candele sintetiche con l'attivazione marcata. Accedi per trasformare uno di essi in un avviso.",
+    "noResults": "Nessun indicatore corrisponde alla ricerca",
+    "whatIsIt": "Cos'è questo indicatore?",
+    "categories": {
+      "trend": "Tendenza",
+      "momentum": "Momentum",
+      "volatility": "Volatilità",
+      "volume": "Volume",
+      "priceLevels": "Livelli di prezzo"
+    },
+    "names": {
+      "SMA": "Media mobile semplice",
+      "EMA": "Media mobile esponenziale",
+      "StochRSI": "RSI stocastico",
+      "RoundPrice": "Prezzo tondo",
+      "Gap": "Gap",
+      "MACD": "MACD",
+      "RSI": "Indice di forza relativa",
+      "BollingerBands": "Bande di Bollinger",
+      "SuperTrend": "SuperTrend",
+      "VWAP": "Prezzo medio ponderato per volume",
+      "ADX": "Indice di direzione media",
+      "Stochastic": "Oscillatore stocastico",
+      "ATR": "Range medio vero",
+      "Ichimoku": "Nuvola Ichimoku",
+      "OBV": "Bilancio del volume",
+      "Volume": "Picco di volume",
+      "PriceChange": "Variazione di prezzo",
+      "CCI": "Indice del canale delle materie prime",
+      "MFI": "Indice del flusso di denaro",
+      "WilliamsR": "Williams %R",
+      "CMO": "Oscillatore di momentum di Chande",
+      "TSI": "Indice di forza vera",
+      "Keltner": "Canali di Keltner",
+      "Donchian": "Canali di Donchian",
+      "WMA": "Media mobile ponderata",
+      "HMA": "Media mobile di Hull",
+      "VWMA": "Media mobile ponderata per volume",
+      "KAMA": "Media mobile adattiva di Kaufman",
+      "PSAR": "SAR parabolico",
+      "Chandelier": "Chandelier Exit",
+      "Aroon": "Aroon",
+      "Vortex": "Indicatore Vortex",
+      "OpenChange": "Variazione dall'apertura",
+      "Week52HighLow": "Massimo/minimo 52 settimane",
+      "TrailingStop": "Trailing stop"
+    },
+    "enums": {
+      "timeFrame": {
+        "Minute": "Minuto",
+        "Hour": "Ora",
+        "Day": "Giorno",
+        "Week": "Settimana",
+        "Month": "Mese"
+      },
+      "candlePart": {
+        "Open": "Apertura",
+        "High": "Massimo",
+        "Low": "Minimo",
+        "Close": "Chiusura"
+      },
+      "direction": {
+        "Both": "Entrambi",
+        "Up": "Rialzo",
+        "Down": "Calo"
+      },
+      "type": {
+        "Long": "Lungo",
+        "Short": "Corto"
+      },
+      "extreme": {
+        "Both": "Entrambi",
+        "High": "Massimo",
+        "Low": "Minimo"
+      },
+      "mode": {
+        "NewExtreme": "Nuovo estremo",
+        "Pullback": "Ritracciamento"
+      },
+      "thresholdtype": {
+        "Percent": "Percentuale",
+        "Absolute": "Assoluto"
+      }
+    },
+    "types": {
+      "integer": "Numero intero",
+      "decimal": "Numero decimale"
+    },
+    "parametersTitle": "Parametri",
+    "detail": {
+      "about": "Informazioni",
+      "example": "Esempio",
+      "exampleHint": "Candele sintetiche di esempio - il marcatore mostra dove l'indicatore è scattato",
+      "exampleLoading": "Caricamento del grafico...",
+      "exampleFailed": "Grafico non disponibile",
+      "parameter": "Parametro",
+      "default": "Predefinito",
+      "description": "Descrizione"
+    }
+  },
+  "instruments": {
+    "title": "Strumenti",
+    "searchPlaceholder": "Cerca per ticker o nome dell'azienda...",
+    "notFound": "Strumento non trovato",
+    "failedToLoad": "Impossibile caricare gli strumenti",
+    "noResults": "Nessuno strumento corrisponde alla ricerca",
+    "noInstruments": "Nessuno strumento disponibile",
+    "subscriptions": "Abbonamenti attivi",
+    "ticker": "Ticker",
+    "exchange": "Borsa",
+    "classCode": "Codice classe",
+    "currency": "Valuta",
+    "type": "Tipo",
+    "type_all": "Tutti i tipi",
+    "type_stock": "Azione",
+    "type_bond": "Obbligazione",
+    "type_etf": "ETF",
+    "type_option": "Opzione",
+    "type_future": "Futures",
+    "type_crypto": "Cripto",
+    "name": "Nome",
+    "sector": "Settore",
+    "industry": "Industria",
+    "country": "Paese",
+    "isin": "ISIN",
+    "employees": "Dipendenti",
+    "website": "Sito web"
+  },
+  "form": {
+    "createTitle": "Crea avviso",
+    "editTitle": "Modifica avviso",
+    "trigger": "Attivazione",
+    "triggerHint": "Quando la condizione è soddisfatta, l'avviso scatta",
+    "cooldownLabel": "Pausa tra le notifiche",
+    "ignoreExtendedLabel": "Ignora le sessioni estese",
+    "ignoreExtendedHint": "I segnali sulle candele di pre-market, after-hours e overnight non genereranno avvisi. Nel crypto non si ignora nulla: quelle borse sono aperte 24 ore su 24.",
+    "notification": "Notifica",
+    "channel": "Canale",
+    "template": "Modello",
+    "selectIndicator": "Seleziona un indicatore",
+    "selectInstrument": "Seleziona uno strumento",
+    "indicatorLabel": "Indicatore",
+    "instrumentLabel": "Strumento",
+    "parameters": "Parametri",
+    "searchInstrumentPlaceholder": "Cerca...",
+    "instrumentLocked": "Lo strumento è bloccato"
+  },
+  "rules": {
+    "title": "Condizioni",
+    "name": "Nome della regola",
+    "nameHint": "Facoltativo. Se vuoto, il nome viene generato automaticamente.",
+    "hint": "Combina le condizioni con AND/OR. Aggiungi gruppi annidati per logiche complesse.",
+    "and": "AND",
+    "or": "OR",
+    "groupLabel": "Gruppo",
+    "groupOperator": "Operatore del gruppo",
+    "addCondition": "Aggiungi condizione",
+    "addGroup": "Aggiungi gruppo",
+    "conditionsLimitReached": "Numero massimo di condizioni raggiunto - rimuovine una per aggiungerne un'altra",
+    "recentInstruments": "Recenti",
+    "noInstrumentsFound": "Nessuno strumento trovato",
+    "deleteCondition": "Rimuovi condizione",
+    "deleteGroup": "Rimuovi gruppo",
+    "moveUp": "Sposta su",
+    "moveDown": "Sposta giù",
+    "redundant": "Alcune condizioni sono duplicate (stesso indicatore, strumento e parametri)",
+    "atLeastOneCondition": "Aggiungi almeno una condizione",
+    "presetsTitle": "Preset rapidi",
+    "presetsHint": "Parti da un'attivazione pronta e regola i parametri"
+  },
+  "cooldown": {
+    "1m": "1 min",
+    "5m": "5 min",
+    "15m": "15 min",
+    "30m": "30 min",
+    "1h": "1 ora",
+    "6h": "6 ore",
+    "minSuffix": "min",
+    "hourSuffix": "h",
+    "decrease": "Riduci la pausa",
+    "increase": "Aumenta la pausa"
+  },
+  "notifications": {
+    "channels": {
+      "telegram": "Telegram",
+      "email": "Email",
+      "webhook": "Webhook",
+      "discord": "Discord",
+      "whatsapp": "WhatsApp",
+      "browser": "Browser"
+    },
+    "templates": {
+      "default": "Predefinito",
+      "short": "Breve",
+      "detailed": "Dettagliata"
+    },
+    "title": "Notifiche",
+    "hint": "Canali di consegna degli avvisi per questo abbonamento",
+    "atLeastOneChannel": "Aggiungi almeno un canale di consegna",
+    "addOutput": "Aggiungi canale",
+    "removeOutput": "Rimuovi canale",
+    "removeOutputDisabled": "Deve rimanere almeno un canale di consegna",
+    "templateLabel": "Modello",
+    "defaultTemplate": "Predefinito",
+    "createTemplate": "Crea modello",
+    "templateName": "Nome del modello",
+    "templateBody": "Testo del modello",
+    "templateTokensHint": "Token: {{ticker}}, {{exchange}}, {{indicator}}, {{alertText}}, {{time}}, {{subscriptionId}}",
+    "noTemplates": "Nessun modello trovato per questo canale",
+    "notEnabled": "Le notifiche del browser non sono attive",
+    "enableHint": "Consenti le notifiche nella finestra del browser - compare quando selezioni il canale",
+    "disableBrowser": "Disattiva",
+    "browserEnabled": "attive",
+    "testNotification": "Prova",
+    "testSent": "Notifica di prova inviata",
+    "testFailed": "Invio della prova non riuscito",
+    "permissionDenied": "Permesso negato. Consenti le notifiche nelle impostazioni del browser.",
+    "notSupported": "Questo browser non supporta le notifiche push",
+    "denied": "Le notifiche sono bloccate per questo sito nelle impostazioni del browser. Consentile - lo stato si aggiorna automaticamente.",
+    "enableFailed": "Impossibile attivare le notifiche del browser. Verifica che Web Push sia configurato sul server.",
+    "chatLabel": "Chat degli avvisi",
+    "noOutputs": {
+      "title": "Gli avvisi non verranno consegnati",
+      "nothingConfigured": "Nessun canale di consegna configurato: collega una chat Telegram o attiva le notifiche del browser.",
+      "noChannels": "Questo abbonamento non ha un canale di consegna.",
+      "settingsLink": "Configura nel profilo",
+      "editLink": "Configura i canali"
+    },
+    "target": {
+      "urlLabel": "URL di destinazione",
+      "urlPlaceholder": "https://…",
+      "webhookHint": "A questo URL viene inviato via POST un payload JSON con i dati dell'avviso, l'immagine del grafico e un link all'abbonamento",
+      "discordHint": "Crea un webhook: impostazioni del server → Integrazioni → Webhook, poi incolla qui il suo URL",
+      "phoneLabel": "Numero di telefono",
+      "phonePlaceholder": "+15551234567",
+      "whatsappHint": "Inviato tramite WhatsApp Business; usa il formato internazionale (E.164)"
+    }
+  },
+  "templates": {
+    "title": "Modelli di notifica",
+    "hint": "I testi con cui vengono formattati i tuoi avvisi",
+    "new": "Nuovo modello",
+    "editTitle": "Modifica modello",
+    "empty": "Non hai ancora modelli - gli avvisi usano il formato standard",
+    "retry": "Riprova",
+    "editAria": "Modifica modello",
+    "deleteAria": "Elimina modello",
+    "deleteTitle": "Eliminare questo modello?",
+    "deleteConfirm": "Il modello «{{name}}» verrà eliminato. Gli abbonamenti che lo usano torneranno al formato standard.",
+    "created": "Modello creato",
+    "saved": "Modello salvato",
+    "deleted": "Modello eliminato",
+    "saveFailed": "Impossibile salvare il modello",
+    "deleteFailed": "Impossibile eliminare il modello",
+    "readOnlyBundled": "Standard",
+    "tokensInsertHint": "Tocca un token per inserirlo al cursore; la selezione viene sostituita"
+  },
+  "validation": {
+    "indicatorRequired": "L'indicatore è obbligatorio",
+    "instrumentRequired": "Lo strumento è obbligatorio",
+    "instrumentNotFound": "Lo strumento {ticker} non è stato trovato",
+    "cooldownMin": "Almeno 1 minuto",
+    "channelRequired": "Il canale è obbligatorio",
+    "templateRequired": "Il modello è obbligatorio",
+    "conditionError": "Condizione {indicator} ({ticker}): {error}",
+    "paramAtLeast": "{param}: il valore deve essere almeno {min}",
+    "paramPositive": "{param}: il valore deve essere maggiore di 0",
+    "paramNonNegative": "{param}: il valore non può essere negativo",
+    "periodOutOfRange": "Periodo fuori intervallo, massimo: {max}",
+    "templateFormat": "La proprietà del modello ha un formato non corretto",
+    "templateUnrecognized": "Input del modello non riconosciuto",
+    "templateUnknown": "Modello sconosciuto",
+    "ruleNameRequired": "Il nome della regola è obbligatorio",
+    "ruleNameTooLong": "Il nome della regola deve essere di al massimo {max} caratteri",
+    "atLeastOneCondition": "Aggiungi almeno una condizione",
+    "conditionsLimit": "Una regola può contenere al massimo {max} condizioni (trovate {found})",
+    "nestingTooDeep": "I gruppi di regole possono essere annidati al massimo {max} livelli",
+    "groupRequired": "Il gruppo di regole è obbligatorio",
+    "tooManyActions": "Un ramo della regola può avere al massimo {max} azioni",
+    "duplicateAction": "Azione duplicata di tipo {type} in un ramo della regola",
+    "webhookUrlInvalid": "Inserisci un URL di destinazione valido (http/https)",
+    "whatsappPhoneInvalid": "Inserisci un numero di telefono in formato internazionale, ad es. +15551234567"
+  },
+  "errors": {
+    "title": "Errore",
+    "failedToLoad": "Caricamento non riuscito",
+    "failedToDelete": "Eliminazione non riuscita",
+    "failedToToggle": "Impossibile aggiornare lo stato dell'abbonamento",
+    "failedToMarkAllRead": "Impossibile contrassegnare gli avvisi come letti",
+    "failedToSave": "Salvataggio non riuscito",
+    "failedToLookup": "Ricerca non riuscita",
+    "subscriptionGone": "Questo avviso è già stato eliminato - probabilmente in un'altra finestra o su un altro dispositivo",
+    "noInternet": "Nessuna connessione a internet",
+    "apiUnavailable": "Il servizio è temporaneamente non disponibile. Riprova più tardi",
+    "retrying": "Verifica del servizio - l'accesso verrà ripristinato automaticamente",
+    "retryingOffline": "Ci riconnetteremo automaticamente quando la connessione a internet sarà ripristinata",
+    "unknown": "Si è verificato un errore imprevisto",
+    "appCrashed": "Qualcosa è andato storto",
+    "appCrashedHint": "L'app ha incontrato un errore imprevisto e la segnalazione è già stata inviata al team. Ricarica la pagina per continuare.",
+    "reload": "Ricarica"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che cerchi non esiste o l'indirizzo potrebbe essere stato scritto male.",
+    "backHome": "Vai alla home"
+  },
+  "landing": {
+    "seo": {
+      "title": "Stock Indicators - avvisi sugli indicatori self-hosted",
+      "description": "Avvisi sugli indicatori open source che ospiti tu: alberi di regole su 35 indicatori, recapito su Telegram, web push, Discord e webhook. I tuoi dati, le tue chiavi API."
+    },
+    "nav": {
+      "language": "Lingua",
+      "signIn": "Accedi",
+      "install": "Installare",
+      "openApp": "Apri l'app",
+      "openAppShort": "Apri app"
+    },
+    "expand": "Vedi il grafico a schermo intero",
+    "hero": {
+      "tag": "Avvisi sugli indicatori open source, self-hosted",
+      "title": "Imposta la regola una volta e ricevi la notifica nell'istante in cui scatta",
+      "subtitle": "Stock Indicators veglia sui tuoi strumenti e indicatori 24 ore su 24 e invia un avviso su Telegram, web push, Discord o un webhook non appena la tua condizione si verifica.",
+      "cta": "Inizia",
+      "statusTriggered": "Scattato",
+      "alerts": [
+        {
+          "indicator": "SMA",
+          "ticker": "AAPL",
+          "exchange": "NASDAQ",
+          "title": "SMA 20",
+          "body": "Il prezzo di chiusura ha incrociato la SMA(20) al rialzo",
+          "time": "3 h fa"
+        },
+        {
+          "indicator": "RSI",
+          "ticker": "TSLA",
+          "exchange": "NASDAQ",
+          "title": "RSI",
+          "body": "L'RSI ha superato 70 entrando in ipercomprato",
+          "time": "2 h fa"
+        },
+        {
+          "indicator": "MACD",
+          "ticker": "SBER",
+          "exchange": "MOEX",
+          "title": "MACD",
+          "body": "Il MACD ha incrociato sopra la linea del segnale",
+          "time": "1 h fa"
+        },
+        {
+          "indicator": "BollingerBands",
+          "ticker": "KO",
+          "exchange": "NYSE",
+          "title": "Bollinger",
+          "body": "Il prezzo di chiusura ha superato la banda superiore di Bollinger",
+          "time": "30 min fa"
+        },
+        {
+          "indicator": "StochRSI",
+          "ticker": "BTCUSDT",
+          "exchange": "BINANCE",
+          "title": "StochRSI",
+          "body": "StochRSI: %K ha incrociato sopra %D nella zona di ipervenduto",
+          "time": "proprio ora"
+        }
+      ],
+      "openSource": "AGPL-3.0 · i dati restano a casa"
+    },
+    "features": {
+      "title": "Cosa ottieni",
+      "items": [
+        {
+          "title": "Regole, non speranze",
+          "text": "Combina gli indicatori in condizioni: medie mobili, RSI, MACD, volume, variazione di prezzo e filtri della sessione di trading."
+        },
+        {
+          "title": "Avvisi dove sei",
+          "text": "Telegram, web push, webhook e Discord: un abbonamento può alimentare più canali insieme."
+        },
+        {
+          "title": "Istantanee delle attivazioni",
+          "text": "Ogni attivazione conserva il grafico con i tuoi indicatori, così vedi esattamente cosa è successo."
+        },
+        {
+          "title": "I mercati in un solo posto",
+          "text": "Azioni, ETF e crypto di MOEX, NASDAQ, NYSE e Binance in un'unica watchlist."
+        },
+        {
+          "title": "Condizioni multilivello",
+          "text": "Combina le condizioni con AND/OR e annida gruppi dentro gruppi: (RSI sotto 30 AND picco di volume) OR MACD che incrocia la linea del segnale - l'avviso scatta su qualsiasi ramo."
+        }
+      ],
+      "rulePreview": {
+        "condition1": "RSI sotto 30",
+        "condition2": "Volume oltre 2x la media",
+        "condition3": "MACD ha incrociato la linea del segnale"
+      }
+    },
+    "steps": {
+      "title": "Tre passi al primo avviso",
+      "items": [
+        {
+          "title": "Avvia il container",
+          "text": "docker compose up con una password nel file .env - app, Postgres e Redis partono insieme."
+        },
+        {
+          "title": "Aggiungi le tue chiavi",
+          "text": "Impostazioni → Provider: collega Tinkoff, Alpaca, Binance o Business Quant con la tua API key e prova la connessione."
+        },
+        {
+          "title": "Crea il primo avviso",
+          "text": "Scegli l'indicatore, la condizione e i canali - Telegram, web push, Discord o un webhook."
+        }
+      ]
+    },
+    "gallery": {
+      "title": "Com'è fatto un avviso",
+      "subtitle": "È esattamente ciò che il motore disegna quando una regola scatta: candele, l'indicatore sovrapposto e una freccia sulla candela che ha fatto scattare l'avviso - renderizzato da dati sintetici, non un feed di mercato. Cambia grafico con le frecce o con uno swipe, aprilo a schermo intero.",
+      "browseAll": "Vedi tutti gli indicatori",
+      "prev": "Grafico precedente",
+      "next": "Grafico successivo",
+      "goTo": "Vai al grafico {{number}}"
+    },
+    "toc": {
+      "label": "Sezioni della pagina",
+      "hero": "Panoramica",
+      "gallery": "Grafici",
+      "features": "Funzionalità",
+      "steps": "Come funziona",
+      "install": "Installazione",
+      "cta": "Inizia"
+    },
+    "install": {
+      "title": "Self-hosted in pochi minuti",
+      "subtitle": "Un solo file compose: app, Postgres e Redis. Niente account, niente fatturazione, niente telemetria - ogni provider si collega con la tua chiave.",
+      "step1Title": "Clona",
+      "step2Title": "Configura",
+      "step3Title": "Avvia",
+      "step1Code": "git clone https://github.com/Drenalol/StockIndicators && cd StockIndicators/packaging",
+      "step2Code": "cp .env.example .env  # poi imposta SI_PASSWORD",
+      "step3Code": "docker compose up -d",
+      "openNote": "Apri http://localhost:8080, accedi con la password e collega i provider in Impostazioni → Provider."
+    },
+    "cta": {
+      "title": "Basta aggiornare il grafico",
+      "subtitle": "Ospita il motore sulla tua macchina e configura il primo avviso in pochi minuti.",
+      "button": "Accedi",
+      "browseIndicators": "Vedi indicatori",
+      "github": "Vedi su GitHub",
+      "support": "Sostieni il progetto",
+      "note": "AGPL-3.0 · funziona con docker compose · nessun servizio di terze parti"
+    }
+  },
+  "legal": {
+    "disclaimer": {
+      "title": "Disclaimer",
+      "updated": "Ultimo aggiornamento: 6 settembre 2026",
+      "sections": [
+        {
+          "heading": "Non è consulenza finanziaria",
+          "paragraphs": [
+            "Tutti i dati, i calcoli, i grafici e le notifiche forniti dal Servizio hanno solo scopo informativo e non costituiscono consulenza finanziaria personalizzata, raccomandazione di comprare o vendere titoli, né una valutazione delle loro prospettive."
+          ]
+        },
+        {
+          "heading": "Precisione dei dati",
+          "paragraphs": [
+            "I dati di mercato provengono da fornitori terzi e possono contenere errori, lacune o ritardi. I valori degli indicatori e la consegna degli avvisi sono forniti «così come sono», senza alcuna garanzia di precisione, completezza o tempestività."
+          ]
+        },
+        {
+          "heading": "Avvertenza sui rischi",
+          "paragraphs": [
+            "Investire nei mercati finanziari comporta il rischio di perdere capitale. Il comportamento passato degli indicatori e dei prezzi non determina i risultati futuri.",
+            "Prendi tutte le decisioni di investimento autonomamente e a tuo rischio; l'amministrazione del Servizio non è responsabile di alcuna perdita."
+          ]
+        }
+      ]
+    },
+    "licenses": {
+      "title": "Licenze open source",
+      "updated": "Ultimo aggiornamento: 25 settembre 2026",
+      "sections": [
+        {
+          "heading": "Componenti di terze parti",
+          "paragraphs": [
+            "Stock Indicators è costruito su software open source. I componenti indicati di seguito sono distribuiti sotto le licenze riprodotte in questa pagina; ogni componente resta copyright dei rispettivi autori.",
+            "La parte server del Servizio gira sulla piattaforma .NET e su altro software open source che non viene distribuito a te; le loro licenze non impongono alcun obbligo aggiuntivo."
+          ]
+        }
+      ]
+    },
+    "logos": {
+      "heading": "Loghi degli strumenti",
+      "link": "Loghi forniti da Logo.dev"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <PackageReference Include="LazyCache" Version="2.4.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.12" />
+        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.12" />
+        <PackageReference Include="Refit.HttpClientFactory" Version="14.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Application\StockIndicators.Application\StockIndicators.Application.csproj" />
+        <ProjectReference Include="..\StockIndicators.Abstract\StockIndicators.Abstract.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+# Stock Indicators
+
+> Open-source, self-hosted technical-indicator monitoring for stocks, ETFs and crypto:
+> combine indicators into rules and get Telegram, push, Discord, WhatsApp and webhook
+> alerts the moment a rule triggers. Bring your own market-data provider keys.
+
+## Links
+
+- [Source code](https://github.com/Drenalol/StockIndicators): the repository, license and installation instructions.
+- [Indicator catalog](/en/indicators): every indicator the rule builder offers, with its parameters.
+
+The application runs on the user's own machine, ships no market data of its own and does
+not phone home: quotes come from the provider whose API key the operator configures.

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>StockIndicators</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\StockIndicators.Application\StockIndicators.Application.csproj"/>
+    <ProjectReference Include="..\Infrastructure\StockIndicators.Infrastructure\StockIndicators.Infrastructure.csproj"/>
+    <ProjectReference Include="..\StockIndicators.Providers.Tinkoff\StockIndicators.Providers.Tinkoff.csproj"/>
+    <ProjectReference Include="..\StockIndicators.Providers.Alpaca\StockIndicators.Providers.Alpaca.csproj"/>
+    <ProjectReference Include="..\StockIndicators.Providers.BusinessQuant\StockIndicators.Providers.BusinessQuant.csproj"/>
+    <ProjectReference Include="..\StockIndicators.Providers.Binance\StockIndicators.Providers.Binance.csproj"/>
+    <ProjectReference Include="..\StockIndicators.Enrichers.Yahoo\StockIndicators.Enrichers.Yahoo.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspnetCore.HealthChecks.Npgsql" Version="9.0.0"/>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.10"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql" Version="10.0.3"/>
+    <PackageReference Include="NSwag.AspNetCore" Version="14.7.1"/>
+    <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.19.1-beta.1"/>
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.19.1"/>
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.19.0"/>
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.19.0"/>
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.19.0"/>
+    <PackageReference Include="Refit.HttpClientFactory" Version="14.0.1"/>
+    <PackageReference Include="Scrutor" Version="7.0.0"/>
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0"/>
+  </ItemGroup>
+
+</Project>

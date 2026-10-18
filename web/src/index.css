@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222.2 84% 4.9%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222.2 84% 4.9%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222.2 84% 4.9%);
+  --color-primary: hsl(221.2 83.2% 53.3%);
+  --color-primary-foreground: hsl(210 40% 98%);
+  --color-secondary: hsl(210 40% 96.1%);
+  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
+  --color-muted: hsl(210 40% 96.1%);
+  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
+  --color-accent: hsl(210 40% 96.1%);
+  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(214.3 31.8% 91.4%);
+  --color-input: hsl(214.3 31.8% 91.4%);
+  --color-ring: hsl(221.2 83.2% 53.3%);
+  /* dark enough for the white success-foreground text to clear WCAG AA (4.5:1) */
+  --color-success: hsl(142 76% 28%);
+  --color-success-foreground: hsl(210 40% 98%);
+  --color-warning: hsl(38 92% 50%);
+  --color-warning-foreground: hsl(26 83% 14%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --color-background: hsl(222.2 84% 4.9%);
+  --color-foreground: hsl(210 40% 98%);
+  --color-card: hsl(222.2 84% 4.9%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-popover: hsl(222.2 84% 4.9%);
+  --color-popover-foreground: hsl(210 40% 98%);
+  --color-primary: hsl(217.2 91.2% 59.8%);
+  --color-primary-foreground: hsl(222.2 47.4% 11.2%);
+  --color-secondary: hsl(217.2 32.6% 17.5%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+  --color-muted: hsl(217.2 32.6% 17.5%);
+  --color-muted-foreground: hsl(215 20.2% 65.1%);
+  --color-accent: hsl(217.2 32.6% 17.5%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(217.2 32.6% 17.5%);
+  --color-input: hsl(217.2 32.6% 17.5%);
+  --color-ring: hsl(224.3 76.3% 48%);
+}
+
+/*
+ * App chrome geometry — the single source of truth for the sticky header, the mobile
+ * bottom nav, the mobile action bars and the dialogs. Never hardcode viewport math
+ * (`calc(100dvh - 177px)` and friends) in pages: use --app-page-h / --app-page-h-bar.
+ *
+ * viewport-fit=cover (index.html) is what makes env(safe-area-inset-*) resolve;
+ * Capacitor's WKWebView runs with contentInsetAdjustmentBehavior = .never, so the
+ * WebView never insets itself and these paddings are the only safe-area handling.
+ */
+:root {
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  /* h-20 row + status bar / dynamic island */
+  --header-h: calc(5rem + var(--safe-t));
+  /* 56px thumb-friendly tab row + home indicator */
+  --nav-h: calc(3.5rem + var(--safe-b));
+  /* p-3 (2 × 0.75rem) + h-11 button + 1px border-top */
+  --bar-h: calc(4.25rem + 1px);
+  --main-pt: 1rem;
+  /* reserves the nav plus a 1rem gap above it */
+  --main-pb: calc(var(--nav-h) + 1rem);
+  /* desktop-only footer (h-12 + 1px border), folded into the page height below */
+  --footer-h: 0px;
+  /* soft keyboard inset written by hooks/useKeyboardOpen (visualViewport math);
+     100dvh ignores the keyboard in iOS/Telegram WebViews, so pages subtract it */
+  --kb-inset: 0px;
+  /* available height for a page root (header + 1px border + main paddings) */
+  --app-page-h: calc(100dvh - var(--header-h) - 1px - var(--main-pt) - var(--main-pb) - var(--footer-h) - var(--kb-inset));
+  /* same, for pages with a fixed mobile bottom action bar (bar sits on the nav) */
+  --app-page-h-bar: calc(var(--app-page-h) - var(--bar-h));
+  /* centered dialog card: keeps a 0.75rem gap inside the safe area */
+  --dialog-max-h: calc(100dvh - var(--safe-t) - var(--safe-b) - 1.5rem);
+}
+
+/* Soft keyboard open (iOS/Telegram: the visual viewport shrinks, the layout one does
+   not): the bottom chrome is useless behind the keys, so its components hide the tab
+   bar and the fixed action bars and their tokens collapse here - the page-root height
+   tokens and the toast position recompute automatically. */
+html[data-keyboard="true"] {
+  --nav-h: 0px;
+  --bar-h: 0px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-h: 0px;
+    --bar-h: 0px;
+    --main-pt: 1.5rem;
+    --main-pb: 1.5rem;
+    --footer-h: 3.0625rem;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    background-color: var(--color-background);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* Slim scrollbars on pointer platforms (macOS classic / Windows). No space is
+     reserved when content fits: styled scrollbars only take room while overflowing.
+     Touch devices are excluded from the media query and keep native overlay scrollbars. */
+  @media (hover: hover) and (pointer: fine) {
+    @supports selector(::-webkit-scrollbar) {
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: color-mix(in oklab, var(--color-foreground) 25%, transparent);
+        border-radius: 9999px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: color-mix(in oklab, var(--color-foreground) 40%, transparent);
+      }
+    }
+    @supports not selector(::-webkit-scrollbar) {
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklab, var(--color-foreground) 25%, transparent) transparent;
+      }
+    }
+  }
+}

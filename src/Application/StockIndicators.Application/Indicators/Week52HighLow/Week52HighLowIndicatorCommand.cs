@@ -1,0 +1,3 @@
+namespace StockIndicators.Application.Indicators.Week52HighLow;
+
+public class Week52HighLowIndicatorCommand : IndicatorCommandBase<Week52HighLowIndicatorResult>;

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+    <InternalsVisibleTo Include="StockIndicators.Indicators.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Historical OHLCV fixtures for indicator example charts (generated from Alpaca). -->
+    <EmbeddedResource Include="Charts\Data\market-*.json" />
+    <!-- The built-in rule-preset catalog (product content, see RulePresetCatalog). -->
+    <EmbeddedResource Include="Rules\Data\rule-presets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The same shared-framework reference Infrastructure carries: PatchValidator and the
+         Telegram bot background service compile against JsonPatch / Hosting types. -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+        <PackageReference Include="DapperExtensions" Version="1.7.0" />
+        <PackageReference Include="FacioQuo.Stock.Indicators" Version="3.0.1" />
+        <PackageReference Include="FluentValidation" Version="12.1.1" />
+        <PackageReference Include="LazyCache" Version="2.4.0" />
+        <PackageReference Include="MediatR" Version="14.2.0" />
+        <!-- Not in the shared framework: the subscription PATCH contract type JsonPatchDocument -->
+        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.10" />
+        <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+        <!-- Pin patched version: DapperExtensions 1.7.0 (unmaintained) hard-depends on vulnerable Oracle.ManagedDataAccess.Core 2.19.110; Oracle provider is never used -->
+        <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.180" />
+        <PackageReference Include="Serilog" Version="4.4.0" />
+        <PackageReference Include="Drenalol.Telegram.Bot.Forms" Version="1.0.0" />
+        <PackageReference Include="Telegram.Bot" Version="22.10.2.1" />
+        <PackageReference Include="WebPush" Version="1.0.13" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Domain\StockIndicators.Domain\StockIndicators.Domain.csproj" />
+        <ProjectReference Include="..\..\StockIndicators.Abstract\StockIndicators.Abstract.csproj" />
+        <ProjectReference Include="..\..\StockIndicators.Components.Utils\StockIndicators.Components.Utils.csproj" />
+        <ProjectReference Include="..\..\StockIndicators.Contracts\StockIndicators.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

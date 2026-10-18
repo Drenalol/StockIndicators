@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <PackageReference Include="LazyCache" Version="2.4.0" />
+        <PackageReference Include="MediatR" Version="14.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.12" />
+        <PackageReference Include="Polly" Version="8.7.0" />
+        <PackageReference Include="RateLimiter" Version="2.2.0" />
+        <PackageReference Include="Tinkoff.InvestApi" Version="0.6.23" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Infrastructure\StockIndicators.Infrastructure\StockIndicators.Infrastructure.csproj" />
+        <ProjectReference Include="..\StockIndicators.Abstract\StockIndicators.Abstract.csproj" />
+        <ProjectReference Include="..\StockIndicators.Components.Utils\StockIndicators.Components.Utils.csproj" />
+        <ProjectReference Include="..\StockIndicators.Providers.Base\StockIndicators.Providers.Base.csproj" />
+    </ItemGroup>
+
+</Project>

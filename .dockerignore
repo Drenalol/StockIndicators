@@ -1,0 +1,28 @@
+# Build context is the repository root (see Dockerfile). Everything regenerable or
+# repository-internal stays out; the two trees the image needs are web/ and src/.
+.git
+.gitignore
+AGENTS.md
+docs
+packaging
+LICENSE
+README.md
+
+# regenerable build output
+**/bin/
+**/obj/
+web/node_modules/
+web/dist/
+web/test-results/
+private/
+
+# local noise
+**/.DS_Store
+**/*.user
+src/StockIndicators.API/appsettings.Development.json
+src/Tests/
+src/tools/
+appsettings.Local.json
+appsettings.*.local.json
+.vs/
+.idea/

@@ -1,0 +1,3 @@
+namespace StockIndicators.Application.Indicators.TrailingStop;
+
+public class TrailingStopIndicatorCommand : IndicatorCommandBase<TrailingStopIndicatorResult>;

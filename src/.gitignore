@@ -1,0 +1,11 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.idea
+dist/
+.zvec-grep/
+
+# local compose secrets (dev postgres)
+deploy/.env

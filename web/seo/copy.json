@@ -1,0 +1,70 @@
+{
+  "_comment": "Copy and locale metadata for the static link-preview pages (scripts/gen-seo-pages.mjs). Only what the app's own catalogs do not carry lives here: the messengers' locale codes, the brand name, the card texts. Page titles come from src/i18n/<locale>.json, indicator descriptions from seo/indicator-descriptions.json.",
+  "siteName": "Stock Indicators",
+  "defaultLocale": "en",
+  "baseUrl": "http://localhost:5173",
+  "_baseUrl_comment": "Where this instance is reachable from the outside; it is baked into canonical/hreflang/og:url and sitemap.xml by scripts/gen-seo-pages.mjs. Set SEO_BASE_URL when building for a real domain and leave this default for local work.",
+  "titleSuffix": " - Stock Indicators",
+  "brandImage": "/og/brand.png",
+  "_ogLocale_comment": "Open Graph wants a locale_Country form (the language alone is accepted but the spec's form is this one).",
+  "locales": {
+    "en": { "ogLocale": "en_US" },
+    "ru": { "ogLocale": "ru_RU" },
+    "es": { "ogLocale": "es_ES" },
+    "it": { "ogLocale": "it_IT" },
+    "de": { "ogLocale": "de_DE" },
+    "fr": { "ogLocale": "fr_FR" },
+    "pt-BR": { "ogLocale": "pt_BR" },
+    "uk": { "ogLocale": "uk_UA" },
+    "be": { "ogLocale": "be_BY" }
+  },
+  "_descriptionLimit_comment": "Every messenger shows og:description in two or three lines and cuts longer text without an ellipsis, so the generator cuts it on a word boundary itself.",
+  "descriptionLength": 200,
+  "_alt_comment": "og:image:alt of the indicator card, the card of the catalog and the landing (a picture a screen reader and a failed load fall back to).",
+  "imageAlt": {
+    "en": "Example chart with the candle where the indicator triggered",
+    "ru": "Пример графика со свечой, на которой сработал индикатор",
+    "es": "Gráfico de ejemplo con la vela en la que el indicador se activó",
+    "it": "Grafico di esempio con la candela in cui l'indicatore è scattato",
+    "de": "Beispielchart mit der Kerze, bei der der Indikator ausgelöst hat",
+    "fr": "Graphique d'exemple avec la bougie où l'indicateur s'est déclenché",
+    "pt-BR": "Gráfico de exemplo com o candle em que o indicador disparou",
+    "uk": "Приклад графіка зі свічкою, на якій індикатор спрацював",
+    "be": "Прыклад графіка са свечкай, на якой індыкатар спрацаваў"
+  },
+  "brandImageAlt": {
+    "en": "Stock Indicators logo",
+    "ru": "Логотип Stock Indicators",
+    "es": "Logotipo de Stock Indicators",
+    "it": "Logo di Stock Indicators",
+    "de": "Stock Indicators Logo",
+    "fr": "Logo Stock Indicators",
+    "pt-BR": "Logotipo do Stock Indicators",
+    "uk": "Логотип Stock Indicators",
+    "be": "Лагатып Stock Indicators"
+  },
+  "_landingImageAlt_comment": "Alt of the landing page and catalog picture (the example chart the API draws for them).",
+  "landingImageAlt": {
+    "en": "Example chart of real candles with the candle where the indicator triggered",
+    "ru": "Пример графика из настоящих свечей со свечой, на которой сработал индикатор",
+    "es": "Gráfico de ejemplo de velas reales con la vela en la que el indicador se activó",
+    "it": "Grafico di esempio di candele reali con la candela in cui l'indicatore è scattato",
+    "de": "Beispielchart mit echten Kerzen und der Kerze, bei der der Indikator ausgelöst hat",
+    "fr": "Graphique d'exemple sur bougies réelles avec la bougie où l'indicateur s'est déclenché",
+    "pt-BR": "Gráfico de exemplo com candles reais e o candle em que o indicador disparou",
+    "uk": "Приклад графіка з реальних свічок зі свічкою, на якій індикатор спрацював",
+    "be": "Прыклад графіка з рэальных свечак са свечкай, на якой індыкатар спрацаваў"
+  },
+  "_channelChips_comment": "The delivery channels drawn on the brand card (scripts/gen-og-brand.mjs), worded exactly as the landing seo description of that language words them. Product names stay as they are.",
+  "channelChips": {
+    "en": ["Telegram", "Push", "Discord", "Webhook"],
+    "ru": ["Telegram", "Пуши", "Discord", "Вебхуки"],
+    "es": ["Telegram", "Push", "Discord", "Webhook"],
+    "it": ["Telegram", "Push", "Discord", "Webhook"],
+    "de": ["Telegram", "Push", "Discord", "Webhook"],
+    "fr": ["Telegram", "Push", "Discord", "Webhook"],
+    "pt-BR": ["Telegram", "Push", "Discord", "Webhook"],
+    "uk": ["Telegram", "Пуші", "Discord", "Вебхуки"],
+    "be": ["Telegram", "Пушы", "Discord", "Вэбхукі"]
+  }
+}

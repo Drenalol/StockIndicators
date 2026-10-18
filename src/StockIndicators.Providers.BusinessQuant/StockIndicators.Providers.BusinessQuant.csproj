@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <PackageReference Include="LazyCache" Version="2.4.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.12" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.12" />
+        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.12" />
+        <PackageReference Include="RateLimiter" Version="2.2.0" />
+        <PackageReference Include="Refit.HttpClientFactory" Version="14.0.1" />
+        <PackageReference Include="System.Reactive" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Domain\StockIndicators.Domain\StockIndicators.Domain.csproj" />
+        <ProjectReference Include="..\StockIndicators.Abstract\StockIndicators.Abstract.csproj" />
+        <ProjectReference Include="..\StockIndicators.Components.Utils\StockIndicators.Components.Utils.csproj" />
+        <ProjectReference Include="..\StockIndicators.Providers.Base\StockIndicators.Providers.Base.csproj" />
+    </ItemGroup>
+
+</Project>

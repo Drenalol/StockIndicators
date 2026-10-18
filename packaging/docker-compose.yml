@@ -1,0 +1,68 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-stock_indicators}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Optional: a second-level candle cache and the instrument-logo cache. The app starts and
+  # works without it (the hot cache lives in the process), so it is behind a profile:
+  #   docker compose --profile redis up -d
+  redis:
+    image: redis:8-alpine
+    profiles: ["redis"]
+    command:
+      - redis-server
+      - --appendonly
+      - yes
+      - --appendfsync
+      - everysec
+      - --maxmemory
+      - 192mb
+      - --maxmemory-policy
+      - noeviction
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      # the image is built from the repository root: the frontend build (web/) is a stage of it
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        # absolute canonical/og/sitemap URLs in the SEO shells; leave empty for a LAN install,
+        # set to the public scheme+host when the instance is published behind a domain
+        SEO_BASE_URL: ${SEO_BASE_URL:-}
+    depends_on:
+      postgres: { condition: service_healthy }
+    # headless Chromium (alert chart images) wants more than the default 64 MB of /dev/shm
+    shm_size: 512mb
+    environment:
+      # appsettings.json ships a dev `Urls`; inside the container the instance listens on
+      # plain http (a reverse proxy in front terminates https) - this beats appsettings
+      Urls: http://+:80
+      ConnectionStrings__CandleStorage: Host=postgres;Port=5432;Database=${POSTGRES_DB:-stock_indicators};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}
+      RedisConfiguration__Hosts__0__Host: redis
+      RedisConfiguration__Hosts__0__Port: 6379
+      # The one account's password. Until it is set, every sign-in is refused - the app
+      # starts, but nobody can get in. A PBKDF2 digest instead of the plain value
+      # (LocalAuth__PasswordHash) is generated with `dotnet run -- hash-password`.
+      LocalAuth__Password: ${SI_PASSWORD}
+    ports: ["${API_PORT:-8080}:80"]
+
+volumes:
+  pgdata:
+  redisdata:

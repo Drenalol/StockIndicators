@@ -1,0 +1,1114 @@
+{
+  "_comment": "The built-in one-tap rule presets: product content, not user data, so it lives here instead of a seeded table - the public indicator pages serve it, and a public-site instance runs without a database. Text maps carry one entry per interface language (en, ru, be, uk, de, es, fr, it, pt-BR); a missing language answers English. 'when' is the RuleGroupDto fragment the rule constructor consumes with the ticker/exchange placeholders left empty for the client to fill. RulePresetCatalogTests guards the shape; adding a preset is a release change.",
+  "presets": [
+    {
+      "key": "rsi-overbought",
+      "indicator": "RSI",
+      "order": 10,
+      "family": "rsi-zones",
+      "name": {
+        "en": "RSI overbought",
+        "ru": "RSI перекуплен",
+        "be": "RSI перакупленасць",
+        "uk": "RSI перекупленість",
+        "de": "RSI überkauft",
+        "es": "RSI en sobrecompra",
+        "fr": "RSI suracheté",
+        "it": "RSI ipercomprato",
+        "pt-BR": "RSI sobrecomprado"
+      },
+      "description": {
+        "en": "RSI(14) enters the overbought zone or leaves it",
+        "ru": "RSI(14) входит в зону перекупленности или выходит из неё",
+        "be": "RSI(14) уваходзіць у зону перакупленасці або выходзіць з яе",
+        "uk": "RSI(14) входить у зону перекупленості або виходить з неї",
+        "de": "Der RSI(14) tritt in die überkaufte Zone ein oder verlässt sie",
+        "es": "El RSI(14) entra en sobrecompra o sale de ella",
+        "fr": "Le RSI(14) entre dans la zone de surachat ou en sort",
+        "it": "L'RSI(14) entra nella zona di ipercomprato o ne esce",
+        "pt-BR": "O RSI(14) entra na zona de sobrecompra ou sai dela"
+      },
+      "familyLabel": {
+        "en": "RSI",
+        "ru": "RSI",
+        "be": "RSI",
+        "uk": "RSI",
+        "de": "RSI",
+        "es": "RSI",
+        "fr": "RSI",
+        "it": "RSI",
+        "pt-BR": "RSI"
+      },
+      "segment": {
+        "en": "Overbought",
+        "ru": "перекуплен",
+        "be": "перакупленасць",
+        "uk": "перекупленість",
+        "de": "Überkauft",
+        "es": "sobrecompra",
+        "fr": "Surcheté",
+        "it": "Ipercomprato",
+        "pt-BR": "Sobrecompra"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "RSI",
+            "templateData": {
+              "Period": 14,
+              "Overbought": 70,
+              "Oversold": 30,
+              "Direction": "Up",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "rsi-oversold",
+      "indicator": "RSI",
+      "order": 20,
+      "family": "rsi-zones",
+      "name": {
+        "en": "RSI oversold",
+        "ru": "RSI перепродан",
+        "be": "RSI перепродадзенасць",
+        "uk": "RSI перепроданість",
+        "de": "RSI überverkauft",
+        "es": "RSI en sobreventa",
+        "fr": "RSI survendu",
+        "it": "RSI ipervenduto",
+        "pt-BR": "RSI sobrevendido"
+      },
+      "description": {
+        "en": "RSI(14) enters the oversold zone or leaves it",
+        "ru": "RSI(14) входит в зону перепроданности или выходит из неё",
+        "be": "RSI(14) уваходзіць у зону перепродадзенасці або выходзіць з яе",
+        "uk": "RSI(14) входить у зону перепроданості або виходить з неї",
+        "de": "Der RSI(14) tritt in die überverkaufte Zone ein oder verlässt sie",
+        "es": "El RSI(14) entra en sobreventa o sale de ella",
+        "fr": "Le RSI(14) entre dans la zone de survente ou en sort",
+        "it": "L'RSI(14) entra nella zona di ipervenduto o ne esce",
+        "pt-BR": "O RSI(14) entra na zona de sobrevenda ou sai dela"
+      },
+      "familyLabel": {
+        "en": "RSI",
+        "ru": "RSI",
+        "be": "RSI",
+        "uk": "RSI",
+        "de": "RSI",
+        "es": "RSI",
+        "fr": "RSI",
+        "it": "RSI",
+        "pt-BR": "RSI"
+      },
+      "segment": {
+        "en": "Oversold",
+        "ru": "перепродан",
+        "be": "перепродадзенасць",
+        "uk": "перепроданість",
+        "de": "Überverkauft",
+        "es": "sobreventa",
+        "fr": "Survente",
+        "it": "Ipervenduto",
+        "pt-BR": "Sobrevenda"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "RSI",
+            "templateData": {
+              "Period": 14,
+              "Overbought": 70,
+              "Oversold": 30,
+              "Direction": "Down",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "macd-bullish-cross",
+      "indicator": "MACD",
+      "order": 30,
+      "family": "macd-cross",
+      "name": {
+        "en": "MACD bullish cross",
+        "ru": "MACD: бычий кросс",
+        "be": "MACD: бічыны перасячэнне",
+        "uk": "MACD: бичачий перетин",
+        "de": "MACD bullisches Kreuz",
+        "es": "MACD cruce alcista",
+        "fr": "MACD croisement haussier",
+        "it": "MACD incrocio rialzista",
+        "pt-BR": "MACD cruzamento altista"
+      },
+      "description": {
+        "en": "MACD crosses above the signal line or the histogram turns positive",
+        "ru": "MACD пересекает сигнальную линию вверх или гистограмма уходит в плюс",
+        "be": "MACD перасякае сігнальную лінію ўгару або гістаграма ідзе ў плюс",
+        "uk": "MACD перетинає сигнальну лінію вгору або гістограма йде в плюс",
+        "de": "Der MACD kreuzt über der Signallinie oder das Histogramm dreht ins Plus",
+        "es": "MACD cruza la línea de señal al alza o el histograma pasa a positivo",
+        "fr": "Le MACD croise la ligne de signal à la hausse ou l'histogramme passe en positif",
+        "it": "Il MACD incrocia sopra la linea del segnale o l'istogramma diventa positivo",
+        "pt-BR": "O MACD cruza a linha de sinal por cima ou o histograma fica positivo"
+      },
+      "familyLabel": {
+        "en": "MACD",
+        "ru": "MACD",
+        "be": "MACD",
+        "uk": "MACD",
+        "de": "MACD",
+        "es": "MACD",
+        "fr": "MACD",
+        "it": "MACD",
+        "pt-BR": "MACD"
+      },
+      "segment": {
+        "en": "Bullish",
+        "ru": "бычий",
+        "be": "бічыны",
+        "uk": "бичачий",
+        "de": "Bullisch",
+        "es": "alcista",
+        "fr": "Haussier",
+        "it": "Rialzista",
+        "pt-BR": "Altista"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "MACD",
+            "templateData": {
+              "FastPeriods": 12,
+              "SlowPeriods": 26,
+              "SignalPeriods": 9,
+              "Direction": "Up",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "macd-bearish-cross",
+      "indicator": "MACD",
+      "order": 40,
+      "family": "macd-cross",
+      "name": {
+        "en": "MACD bearish cross",
+        "ru": "MACD: медвежий кросс",
+        "be": "MACD: мядзведжы перасячэнне",
+        "uk": "MACD: ведмежий перетин",
+        "de": "MACD bärisches Kreuz",
+        "es": "MACD cruce bajista",
+        "fr": "MACD croisement baissier",
+        "it": "MACD incrocio ribassista",
+        "pt-BR": "MACD cruzamento baixista"
+      },
+      "description": {
+        "en": "MACD crosses below the signal line or the histogram turns negative",
+        "ru": "MACD пересекает сигнальную линию вниз или гистограмма уходит в минус",
+        "be": "MACD перасякае сігнальную лінію ўніз або гістаграма ідзе ў мінус",
+        "uk": "MACD перетинає сигнальну лінію вниз або гістограма йде в мінус",
+        "de": "Der MACD kreuzt unter der Signallinie oder das Histogramm dreht ins Minus",
+        "es": "MACD cruza la línea de señal a la baja o el histograma pasa a negativo",
+        "fr": "Le MACD croise la ligne de signal à la baisse ou l'histogramme passe en négatif",
+        "it": "Il MACD incrocia sotto la linea del segnale o l'istogramma diventa negativo",
+        "pt-BR": "O MACD cruza a linha de sinal por baixo ou o histograma fica negativo"
+      },
+      "familyLabel": {
+        "en": "MACD",
+        "ru": "MACD",
+        "be": "MACD",
+        "uk": "MACD",
+        "de": "MACD",
+        "es": "MACD",
+        "fr": "MACD",
+        "it": "MACD",
+        "pt-BR": "MACD"
+      },
+      "segment": {
+        "en": "Bearish",
+        "ru": "медвежий",
+        "be": "мядзведжы",
+        "uk": "ведмежий",
+        "de": "Bärisch",
+        "es": "bajista",
+        "fr": "Baissier",
+        "it": "Ribassista",
+        "pt-BR": "Baixista"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "MACD",
+            "templateData": {
+              "FastPeriods": 12,
+              "SlowPeriods": 26,
+              "SignalPeriods": 9,
+              "Direction": "Down",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "bb-upper-breakout",
+      "indicator": "BollingerBands",
+      "order": 50,
+      "family": "bb-breakout",
+      "name": {
+        "en": "BB upper breakout",
+        "ru": "Пробой верхней полосы BB",
+        "be": "Прабой верхняй паласы BB",
+        "uk": "Пробій верхньої смуги BB",
+        "de": "Ausbruch aus dem oberen BB-Band",
+        "es": "Ruptura de la banda superior BB",
+        "fr": "Rupture de la bande supérieure BB",
+        "it": "Rottura banda superiore BB",
+        "pt-BR": "Ruptura da banda superior BB"
+      },
+      "description": {
+        "en": "Price leaves the bands upward or returns from above the upper band",
+        "ru": "Цена выходит за полосы вверх или возвращается из-за верхней полосы",
+        "be": "Цана выходзіць за палосы ўгару або вяртаецца з-за верхняй паласы",
+        "uk": "Ціна виходить за смуги вгору або повертається з-за верхньої смуги",
+        "de": "Der Preis verlässt die Bänder nach oben oder kehrt vom oberen Band zurück",
+        "es": "El precio sale de las bandas por arriba o vuelve desde la banda superior",
+        "fr": "Le prix sort des bandes vers le haut ou revient d'au-dessus de la bande supérieure",
+        "it": "Il prezzo esce dalle bande verso l'alto o rientra da sopra la banda superiore",
+        "pt-BR": "O preço sai das bandas para cima ou volta de cima da banda superior"
+      },
+      "familyLabel": {
+        "en": "Bollinger",
+        "ru": "Полосы BB",
+        "be": "Палосы BB",
+        "uk": "Смуги BB",
+        "de": "BB-Bänder",
+        "es": "Bandas BB",
+        "fr": "Bandes BB",
+        "it": "Bande BB",
+        "pt-BR": "Bandas BB"
+      },
+      "segment": {
+        "en": "Upper",
+        "ru": "верхняя",
+        "be": "верхняя",
+        "uk": "верхня",
+        "de": "Oberes",
+        "es": "superior",
+        "fr": "Supérieure",
+        "it": "Superiore",
+        "pt-BR": "Superior"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "BollingerBands",
+            "templateData": {
+              "Period": 20,
+              "StandardDeviation": 2,
+              "CandlePart": "Close",
+              "Direction": "Up",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "bb-lower-breakout",
+      "indicator": "BollingerBands",
+      "order": 60,
+      "family": "bb-breakout",
+      "name": {
+        "en": "BB lower breakout",
+        "ru": "Пробой нижней полосы BB",
+        "be": "Прабой ніжняй паласы BB",
+        "uk": "Пробій нижньої смуги BB",
+        "de": "Ausbruch aus dem unteren BB-Band",
+        "es": "Ruptura de la banda inferior BB",
+        "fr": "Rupture de la bande inférieure BB",
+        "it": "Rottura banda inferiore BB",
+        "pt-BR": "Ruptura da banda inferior BB"
+      },
+      "description": {
+        "en": "Price leaves the bands downward or returns from below the lower band",
+        "ru": "Цена выходит за полосы вниз или возвращается из-за нижней полосы",
+        "be": "Цана выходзіць за палосы ўніз або вяртаецца з-за ніжняй паласы",
+        "uk": "Ціна виходить за смуги вниз або повертається з-за нижньої смуги",
+        "de": "Der Preis verlässt die Bänder nach unten oder kehrt vom unteren Band zurück",
+        "es": "El precio sale de las bandas por abajo o vuelve desde la banda inferior",
+        "fr": "Le prix sort des bandes par le bas ou revient de sous la bande inférieure",
+        "it": "Il prezzo esce dalle bande verso il basso o rientra da sotto la banda inferiore",
+        "pt-BR": "O preço sai das bandas para baixo ou volta de baixo da banda inferior"
+      },
+      "familyLabel": {
+        "en": "Bollinger",
+        "ru": "Полосы BB",
+        "be": "Палосы BB",
+        "uk": "Смуги BB",
+        "de": "BB-Bänder",
+        "es": "Bandas BB",
+        "fr": "Bandes BB",
+        "it": "Bande BB",
+        "pt-BR": "Bandas BB"
+      },
+      "segment": {
+        "en": "Lower",
+        "ru": "нижняя",
+        "be": "ніжняя",
+        "uk": "нижня",
+        "de": "Unteres",
+        "es": "inferior",
+        "fr": "Inférieure",
+        "it": "Inferiore",
+        "pt-BR": "Inferior"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "BollingerBands",
+            "templateData": {
+              "Period": 20,
+              "StandardDeviation": 2,
+              "CandlePart": "Close",
+              "Direction": "Down",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "volume-spike-2x",
+      "indicator": "Volume",
+      "order": 70,
+      "name": {
+        "en": "Volume spike x2",
+        "ru": "Всплеск объёма x2",
+        "be": "Усплёск аб'ёму x2",
+        "uk": "Сплеск обсягу x2",
+        "de": "Volumenausstoß x2",
+        "es": "Pico de volumen x2",
+        "fr": "Pic de volume x2",
+        "it": "Picco di volume x2",
+        "pt-BR": "Pico de volume x2"
+      },
+      "description": {
+        "en": "Volume of the last candle is at least 2x the average of 20 candles",
+        "ru": "Объём последней свечи минимум в 2 раза выше среднего за 20 свечей",
+        "be": "Аб'ём апошняй свечкі як найменш удвая вышэй за сярэдняе за 20 свечак",
+        "uk": "Обсяг останньої свічки щонайменше вдвічі вищий за середнє за 20 свічок",
+        "de": "Das Volumen der letzten Kerze ist mindestens doppelt so hoch wie der Durchschnitt von 20 Kerzen",
+        "es": "El volumen de la última vela duplica el promedio de 20 velas",
+        "fr": "Le volume de la dernière bougie est au moins 2 fois la moyenne de 20 bougies",
+        "it": "Il volume dell'ultima candela è almeno 2 volte la media di 20 candele",
+        "pt-BR": "O volume da última vela é pelo menos o dobro da média de 20 velas"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "Volume",
+            "templateData": {
+              "Periods": 20,
+              "Multiplier": 2,
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "gap-up",
+      "indicator": "Gap",
+      "order": 80,
+      "family": "gap-move",
+      "name": {
+        "en": "Gap up 2%",
+        "ru": "Гэп вверх 2%",
+        "be": "Гэп угару 2%",
+        "uk": "Геп угору 2%",
+        "de": "Aufwärts-Gap 2%",
+        "es": "Gap al alza 2%",
+        "fr": "Gap haussier 2%",
+        "it": "Gap rialzista 2%",
+        "pt-BR": "Gap de alta 2%"
+      },
+      "description": {
+        "en": "Open is at least 2% above the previous close",
+        "ru": "Открытие минимум на 2% выше предыдущего закрытия",
+        "be": "Адкрыццё як найменш на 2% вышэй за папярэдняе закрыццё",
+        "uk": "Відкриття щонайменше на 2% вище за попереднє закриття",
+        "de": "Die Eröffnung liegt mindestens 2 % über dem Vortagsschluss",
+        "es": "La apertura sube al menos un 2% sobre el cierre anterior",
+        "fr": "L'ouverture est d'au moins 2 % au-dessus de la clôture précédente",
+        "it": "L'apertura è almeno il 2% sopra la chiusura precedente",
+        "pt-BR": "A abertura fica pelo menos 2% acima do fechamento anterior"
+      },
+      "familyLabel": {
+        "en": "Gap",
+        "ru": "Гэп",
+        "be": "Гэп",
+        "uk": "Геп",
+        "de": "Gap",
+        "es": "Gap",
+        "fr": "Gap",
+        "it": "Gap",
+        "pt-BR": "Gap"
+      },
+      "segment": {
+        "en": "Up",
+        "ru": "вверх",
+        "be": "ўгару",
+        "uk": "угору",
+        "de": "Aufwärts",
+        "es": "arriba",
+        "fr": "En hausse",
+        "it": "Su",
+        "pt-BR": "Alta"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "Gap",
+            "templateData": {
+              "Percent": 2,
+              "Direction": "Up",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "gap-down",
+      "indicator": "Gap",
+      "order": 90,
+      "family": "gap-move",
+      "name": {
+        "en": "Gap down 2%",
+        "ru": "Гэп вниз 2%",
+        "be": "Гэп ўніз 2%",
+        "uk": "Геп вниз 2%",
+        "de": "Abwärts-Gap 2%",
+        "es": "Gap a la baja 2%",
+        "fr": "Gap baissier 2%",
+        "it": "Gap ribassista 2%",
+        "pt-BR": "Gap de queda 2%"
+      },
+      "description": {
+        "en": "Open is at least 2% below the previous close",
+        "ru": "Открытие минимум на 2% ниже предыдущего закрытия",
+        "be": "Адкрыццё як найменш на 2% ніжэй за папярэдняе закрыццё",
+        "uk": "Відкриття щонайменше на 2% нижче за попереднє закриття",
+        "de": "Die Eröffnung liegt mindestens 2 % unter dem Vortagsschluss",
+        "es": "La apertura cae al menos un 2% bajo el cierre anterior",
+        "fr": "L'ouverture est d'au moins 2 % en dessous de la clôture précédente",
+        "it": "L'apertura è almeno il 2% sotto la chiusura precedente",
+        "pt-BR": "A abertura fica pelo menos 2% abaixo do fechamento anterior"
+      },
+      "familyLabel": {
+        "en": "Gap",
+        "ru": "Гэп",
+        "be": "Гэп",
+        "uk": "Геп",
+        "de": "Gap",
+        "es": "Gap",
+        "fr": "Gap",
+        "it": "Gap",
+        "pt-BR": "Gap"
+      },
+      "segment": {
+        "en": "Down",
+        "ru": "вниз",
+        "be": "ўніз",
+        "uk": "вниз",
+        "de": "Abwärts",
+        "es": "abajo",
+        "fr": "En baisse",
+        "it": "Giù",
+        "pt-BR": "Queda"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "Gap",
+            "templateData": {
+              "Percent": 2,
+              "Direction": "Down",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "rsi-oversold-volume-spike",
+      "indicator": "RSI",
+      "order": 100,
+      "name": {
+        "en": "RSI oversold + volume x2",
+        "ru": "RSI перепродан + объём x2",
+        "be": "RSI перепродадзенасць + аб'ём x2",
+        "uk": "RSI перепроданість + обсяг x2",
+        "de": "RSI überverkauft + Volumen x2",
+        "es": "RSI sobreventa + volumen x2",
+        "fr": "RSI survendu + volume x2",
+        "it": "RSI ipervenduto + volume x2",
+        "pt-BR": "RSI sobrevendido + volume x2"
+      },
+      "description": {
+        "en": "Momentum bottom together with a volume surge (premium combo)",
+        "ru": "Дно импульса вместе со всплеском объёма (премиум-связка)",
+        "be": "Дно імпульсу разам з усплёскам аб'ёму (прэміум-звязка)",
+        "uk": "Дно імпульсу разом зі сплеском обсягу (прэміум-зв'язка)",
+        "de": "Boden des Moments zusammen mit einem Volumenschub (Premium-Kombi)",
+        "es": "Mínimo de momentum junto a un pico de volumen (combo premium)",
+        "fr": "Creux de momentum accompagné d'un pic de volume (combo premium)",
+        "it": "Minimo di momentum insieme a un picco di volume (combo premium)",
+        "pt-BR": "Fundo de momentum junto com um pico de volume (combo premium)"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "RSI",
+            "templateData": {
+              "Period": 14,
+              "Overbought": 70,
+              "Oversold": 30,
+              "Direction": "Down",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          },
+          {
+            "id": null,
+            "indicator": "Volume",
+            "templateData": {
+              "Periods": 20,
+              "Multiplier": 2,
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "openchange-down-3",
+      "indicator": "OpenChange",
+      "order": 110,
+      "family": "openchange-move",
+      "name": {
+        "en": "Down 3% from open",
+        "ru": "Падение 3% от открытия дня",
+        "be": "Падзенне 3% ад адкрыцця",
+        "uk": "Падіння 3% від відкриття",
+        "de": "3 % unter Eröffnung",
+        "es": "Caída 3% desde la apertura",
+        "fr": "Baisse de 3 % depuis l'ouverture",
+        "it": "Giù 3% dall'apertura",
+        "pt-BR": "Queda de 3% da abertura"
+      },
+      "description": {
+        "en": "Close is at least 3% below the opening price of the day",
+        "ru": "Закрытие минимум на 3% ниже цены открытия дня",
+        "be": "Закрыццё як найменш на 3% ніжэй за цану адкрыцця дня",
+        "uk": "Закриття щонайменше на 3% нижче за ціну відкриття дня",
+        "de": "Der Schluss liegt mindestens 3 % unter dem Eröffnungskurs des Tages",
+        "es": "El cierre cae al menos un 3% bajo el precio de apertura del día",
+        "fr": "La clôture est d'au moins 3 % en dessous du prix d'ouverture du jour",
+        "it": "La chiusura è almeno il 3% sotto il prezzo di apertura del giorno",
+        "pt-BR": "O fechamento fica pelo menos 3% abaixo do preço de abertura do dia"
+      },
+      "familyLabel": {
+        "en": "From open",
+        "ru": "Открытие",
+        "be": "Адкрыццё",
+        "uk": "Відкриття",
+        "de": "Eröffnung",
+        "es": "Apertura",
+        "fr": "Depuis l'ouverture",
+        "it": "Dall'apertura",
+        "pt-BR": "Da abertura"
+      },
+      "segment": {
+        "en": "−3%",
+        "ru": "−3%",
+        "be": "−3%",
+        "uk": "−3%",
+        "de": "−3%",
+        "es": "−3%",
+        "fr": "−3%",
+        "it": "−3%",
+        "pt-BR": "−3%"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "OpenChange",
+            "templateData": {
+              "Percent": 3,
+              "Direction": "Down",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "openchange-up-3",
+      "indicator": "OpenChange",
+      "order": 120,
+      "family": "openchange-move",
+      "name": {
+        "en": "Up 3% from open",
+        "ru": "Рост 3% от открытия дня",
+        "be": "Рост 3% ад адкрыцця",
+        "uk": "Зростання 3% від відкриття",
+        "de": "3 % über Eröffnung",
+        "es": "Subida 3% desde la apertura",
+        "fr": "Hausse de 3 % depuis l'ouverture",
+        "it": "Su 3% dall'apertura",
+        "pt-BR": "Alta de 3% da abertura"
+      },
+      "description": {
+        "en": "Close is at least 3% above the opening price of the day",
+        "ru": "Закрытие минимум на 3% выше цены открытия дня",
+        "be": "Закрыццё як найменш на 3% вышэй за цану адкрыцця дня",
+        "uk": "Закриття щонайменше на 3% вище за ціну відкриття дня",
+        "de": "Der Schluss liegt mindestens 3 % über dem Eröffnungskurs des Tages",
+        "es": "El cierre sube al menos un 3% sobre el precio de apertura del día",
+        "fr": "La clôture est d'au moins 3 % au-dessus du prix d'ouverture du jour",
+        "it": "La chiusura è almeno il 3% sopra il prezzo di apertura del giorno",
+        "pt-BR": "O fechamento fica pelo menos 3% acima do preço de abertura do dia"
+      },
+      "familyLabel": {
+        "en": "From open",
+        "ru": "Открытие",
+        "be": "Адкрыццё",
+        "uk": "Відкриття",
+        "de": "Eröffnung",
+        "es": "Apertura",
+        "fr": "Depuis l'ouverture",
+        "it": "Dall'apertura",
+        "pt-BR": "Da abertura"
+      },
+      "segment": {
+        "en": "+3%",
+        "ru": "+3%",
+        "be": "+3%",
+        "uk": "+3%",
+        "de": "+3%",
+        "es": "+3%",
+        "fr": "+3%",
+        "it": "+3%",
+        "pt-BR": "+3%"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "OpenChange",
+            "templateData": {
+              "Percent": 3,
+              "Direction": "Up",
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "week52-new-high",
+      "indicator": "Week52HighLow",
+      "order": 130,
+      "family": "week52-extremes",
+      "name": {
+        "en": "New 52-week high",
+        "ru": "Новый 52-недельный максимум",
+        "be": "Новы 52-тыднёвы максімум",
+        "uk": "Новий 52-тижневий максимум",
+        "de": "Neues 52-Wochen-Hoch",
+        "es": "Nuevo máximo de 52 semanas",
+        "fr": "Nouveau plus haut sur 52 semaines",
+        "it": "Nuovo massimo di 52 settimane",
+        "pt-BR": "Nova máxima de 52 semanas"
+      },
+      "description": {
+        "en": "The close steps above the highest high of the previous 52 weeks",
+        "ru": "Закрытие поднимается выше максимума предыдущих 52 недель",
+        "be": "Закрыццё падымаецца вышэй за найвышэйшы максімум папярэдніх 52 тыдняў",
+        "uk": "Закриття піднімається вище за найвищий максимум попередніх 52 тижнів",
+        "de": "Der Schluss steigt über das höchste Hoch der vorherigen 52 Wochen",
+        "es": "El cierre sube por encima del máximo de las 52 semanas anteriores",
+        "fr": "La clôture dépasse le plus haut des 52 dernières semaines",
+        "it": "La chiusura sale sopra il massimo più alto delle 52 settimane precedenti",
+        "pt-BR": "O fechamento sobe acima da máxima mais alta das 52 semanas anteriores"
+      },
+      "familyLabel": {
+        "en": "52 weeks",
+        "ru": "52 недель",
+        "be": "52 тыдні",
+        "uk": "52 тижні",
+        "de": "52 Wochen",
+        "es": "52 semanas",
+        "fr": "52 semaines",
+        "it": "52 settimane",
+        "pt-BR": "52 semanas"
+      },
+      "segment": {
+        "en": "High",
+        "ru": "максимум",
+        "be": "максімум",
+        "uk": "максімум",
+        "de": "Hoch",
+        "es": "máximo",
+        "fr": "Plus haut",
+        "it": "Massimo",
+        "pt-BR": "Máxima"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "Week52HighLow",
+            "templateData": {
+              "Weeks": 52,
+              "Extreme": "High",
+              "Mode": "NewExtreme",
+              "PullbackPercent": 5,
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "week52-new-low",
+      "indicator": "Week52HighLow",
+      "order": 140,
+      "family": "week52-extremes",
+      "name": {
+        "en": "New 52-week low",
+        "ru": "Новый 52-недельный минимум",
+        "be": "Новы 52-тыднёвы мінімум",
+        "uk": "Новий 52-тижневий мінімум",
+        "de": "Neues 52-Wochen-Tief",
+        "es": "Nuevo mínimo de 52 semanas",
+        "fr": "Nouveau plus bas sur 52 semaines",
+        "it": "Nuovo minimo di 52 settimane",
+        "pt-BR": "Nova mínima de 52 semanas"
+      },
+      "description": {
+        "en": "The close drops below the lowest low of the previous 52 weeks",
+        "ru": "Закрытие опускается ниже минимума предыдущих 52 недель",
+        "be": "Закрыццё апускаецца ніжэй за найніжэйшы мінімум папярэдніх 52 тыдняў",
+        "uk": "Закриття опускається нижче за найнижчий мінімум попередніх 52 тижнів",
+        "de": "Der Schluss fällt unter das tiefste Tief der vorherigen 52 Wochen",
+        "es": "El cierre baja por debajo del mínimo de las 52 semanas anteriores",
+        "fr": "La clôture passe sous le plus bas des 52 dernières semaines",
+        "it": "La chiusura scende sotto il minimo più basso delle 52 settimane precedenti",
+        "pt-BR": "O fechamento cai abaixo da mínima mais baixa das 52 semanas anteriores"
+      },
+      "familyLabel": {
+        "en": "52 weeks",
+        "ru": "52 недель",
+        "be": "52 тыдні",
+        "uk": "52 тижні",
+        "de": "52 Wochen",
+        "es": "52 semanas",
+        "fr": "52 semaines",
+        "it": "52 settimane",
+        "pt-BR": "52 semanas"
+      },
+      "segment": {
+        "en": "Low",
+        "ru": "минимум",
+        "be": "мінімум",
+        "uk": "мінімум",
+        "de": "Tief",
+        "es": "mínimo",
+        "fr": "Plus bas",
+        "it": "Minimo",
+        "pt-BR": "Mínima"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "Week52HighLow",
+            "templateData": {
+              "Weeks": 52,
+              "Extreme": "Low",
+              "Mode": "NewExtreme",
+              "PullbackPercent": 5,
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "key": "trailing-stop-long-5",
+      "indicator": "TrailingStop",
+      "order": 150,
+      "name": {
+        "en": "Long trailing stop -5%",
+        "ru": "Трейл-стоп лонга: −5%",
+        "be": "Трэйл-стоп лонга -5%",
+        "uk": "Трейлінг-стоп лонга -5%",
+        "de": "Trailing-Stop Long -5%",
+        "es": "Stop dinámico del largo: -5%",
+        "fr": "Trailing stop long -5%",
+        "it": "Trailing stop long -5%",
+        "pt-BR": "Trailing stop de compra -5%"
+      },
+      "description": {
+        "en": "Alert when the close falls 5% under the highest high since the alert was armed",
+        "ru": "Алерт, когда закрытие падает на 5% ниже максимума с момента взведения алерта",
+        "be": "Апавяшчэнне, калі закрыццё падае на 5% ніжэй за найвышэйшы максімум з моманту ўзвядзення апавяшчэння",
+        "uk": "Алерт, коли закриття падає на 5% нижче найвищого максимуму з моменту взведення алерту",
+        "de": "Alert, wenn der Schluss um 5 % unter das höchste Hoch seit dem Scharfschalten der Alert fällt",
+        "es": "Alerta cuando el cierre cae un 5% bajo el máximo desde que se armó la alerta",
+        "fr": "Alerte quand la clôture baisse de 5 % sous le plus haut depuis l'armement de l'alerte",
+        "it": "Avviso quando la chiusura scende del 5% sotto il massimo più alto da quando l'avviso è stato attivato",
+        "pt-BR": "Alerta quando o fechamento cai 5% abaixo da máxima mais alta desde que a alerta foi armada"
+      },
+      "when": {
+        "id": null,
+        "operator": "And",
+        "conditions": [
+          {
+            "id": null,
+            "indicator": "TrailingStop",
+            "templateData": {
+              "Type": "Long",
+              "ThresholdType": "Percent",
+              "Value": 5,
+              "TimeFrame": 2
+            },
+            "operator": "GreaterThan",
+            "referenceType": "Value",
+            "referenceIndicator": null,
+            "referenceTemplateData": null,
+            "referenceCandlePart": null,
+            "referenceValue": null,
+            "deviation": null,
+            "ticker": "",
+            "exchangeName": null,
+            "timeFrame": 2
+          }
+        ],
+        "groups": []
+      }
+    }
+  ]
+}

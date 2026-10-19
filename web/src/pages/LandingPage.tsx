@@ -138,9 +138,11 @@ export default function LandingPage() {
   });
   const hasGallery = !!examples && examples.length > 0;
   // A public-site instance has no sign-in behind this page: the entry point becomes the
-  // installation instead. Until the mode is known the slot stays empty rather than offering a
-  // login that may not exist (the probe is same-origin and answers in milliseconds).
-  const { data: siteConfig } = useSiteMode();
+  // installation instead. While the mode is unknown no sign-in affordance renders anywhere on
+  // the page - the header slot stays empty, the hero points at the install section - rather
+  // than flashing a "Sign in" that a public instance then removes (the probe is same-origin
+  // and answers in milliseconds). An unreadable answer means the whole product, as in AppArea.
+  const { isPending: modePending, data: siteConfig } = useSiteMode();
   const landingOnly = !!siteConfig?.landingOnly;
   // warm the lazy chart chunk in parallel with the examples fetch, so the gallery
   // does not serialize a second big download after the data arrives
@@ -198,7 +200,7 @@ export default function LandingPage() {
             >
               {resolvedTheme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
-            {siteConfig === undefined ? null : landingOnly ? (
+            {modePending ? null : landingOnly ? (
               // the install section is the whole point of a public landing: three commands
               <Button asChild className="ml-1 h-11 md:h-10">
                 <a href="#install">{l.nav.install}</a>
@@ -247,8 +249,9 @@ export default function LandingPage() {
             <p className="text-sm text-muted-foreground md:text-lg">{l.hero.subtitle}</p>
             {/* mobile: the CTA sits at the right edge (thumb reach); desktop keeps the column start */}
             <Button asChild size="lg" className="h-11 self-end px-6 md:self-auto">
-              {/* on a public landing "Get started" means installing it, not signing in */}
-              {landingOnly
+              {/* on a public landing "Get started" means installing it, not signing in;
+                  while the mode is unknown it installs too - never a login that may not exist */}
+              {landingOnly || modePending
                 ? <a href="#install">{l.hero.cta}</a>
                 : <Link to={`/${routeLocale}/login`}>{l.hero.cta}</Link>}
             </Button>
@@ -414,27 +417,22 @@ export default function LandingPage() {
             <h2 className="max-w-xl text-xl font-bold md:text-3xl">{l.cta.title}</h2>
             <p className="max-w-lg text-sm text-muted-foreground md:text-base">{l.cta.subtitle}</p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {landingOnly ? (
-                // no sign-in here: the repository is where the product starts
-                // the GitHub mark is the convention: a square icon button, the label
-                // lives in the accessible name (the mark itself is decorative)
-                <Button asChild size="icon" className="size-11" aria-label={l.cta.github}>
-                  <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                    <GitHubIcon className="h-5 w-5" />
-                  </a>
+              {modePending || landingOnly ? null : (
+                // no sign-in on a landing-only instance (and none while the mode is still
+                // unknown): the repository is where the product starts
+                <Button asChild size="lg" className="h-11 px-8">
+                  <Link to={`/${routeLocale}/login`}>{l.cta.button}</Link>
                 </Button>
-              ) : (
-                <>
-                  <Button asChild size="lg" className="h-11 px-8">
-                    <Link to={`/${routeLocale}/login`}>{l.cta.button}</Link>
-                  </Button>
-                  <Button asChild size="icon" variant="outline" className="size-11" aria-label={l.cta.github}>
-                    <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                      <GitHubIcon className="h-5 w-5" />
-                    </a>
-                  </Button>
-                </>
               )}
+              {/* the GitHub mark is the convention: a square icon button, the label
+                  lives in the accessible name (the mark itself is decorative);
+                  the same outline button on both instance kinds - the default
+                  variant would make it a primary-blue square on the public landing */}
+              <Button asChild size="icon" variant="outline" className="size-11" aria-label={l.cta.github}>
+                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                  <GitHubIcon className="h-5 w-5" />
+                </a>
+              </Button>
               <Button asChild size="lg" variant="outline" className="h-11 px-8">
                 <a href={BOOSTY_URL} target="_blank" rel="noopener noreferrer">
                   <BoostyIcon className="mr-2 h-5 w-5" />

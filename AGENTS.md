@@ -42,8 +42,8 @@ cd src && dotnet build && dotnet test
 cd web && npm run lint && npm run typecheck && npm run check:i18n && npm run check:seo && npm run build
 ```
 
-**Never push without the owner's explicit word.** Commit as the configured author
-(`Bogdan Yanysh <4239087+Drenalol@users.noreply.github.com>`).
+**Never push without the owner's explicit word.** Commit as the author this repository is
+configured for (`git config user.name` / `user.email`) - never set an identity ad hoc per commit.
 
 Never leave a dev server or `docker compose` stack running after a check: kill the process /
 `docker compose down`. When killing test instances, kill by PID - the owner's own dev instance
@@ -58,8 +58,9 @@ usually runs `dotnet run` on 5051, and the dev Telegram bot loses updates to a s
 - Frontend dev: `cd web && npm run dev` (vite proxies `/api` to the backend).
 - Migrations: EF applies them at startup. Create from the API project:
   `dotnet ef migrations add <Name> --project ../Infrastructure/StockIndicators.Infrastructure`.
-  The released schema is the rebaselined `InitialCreate` plus additive migrations; the repo is
-  not pushed yet, so prefer clean schema changes over compatibility shims.
+  The released schema is the rebaselined `InitialCreate` plus additive migrations; there are no
+  third-party installs to stay compatible with yet, so prefer clean schema changes over
+  compatibility shims.
 - Tinkoff/T-Bank on macOS: the provider dials `invest-public-api.tbank.ru:443`, whose chain the
   OS TLS stack cannot verify - run `go run ./tools/tinkoff-tls-bridge` (port 18443) and keep
   `TinkoffProviderOptions:TlsBridgeAddress` in the Local file. The connection tester assembles

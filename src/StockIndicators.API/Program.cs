@@ -517,10 +517,12 @@ async Task Configure(WebApplication app)
   // copies the web build next to the assembly). UseDefaultFiles serves dist/<locale>/index.html
   // SEO shells as directory documents; the SPA fallback below answers every other path, so
   // deep links like /ru/dashboard/settings survive a refresh.
-  app.UseDefaultFiles();
-  app.UseStaticFiles();
-
+  // Compression runs before the shells are served: the site-mode stamp below must see plain
+  // text (and this is also what finally compresses the static assets and the fallback shell).
   app.UseResponseCompression();
+  app.UseDefaultFiles();
+  app.UseSiteModeScript(publicSite);
+  app.UseStaticFiles();
 
   app.UseRouting();
 

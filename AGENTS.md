@@ -122,7 +122,11 @@ renders: code, kind, env section, docs URL, markets, fields. Semantics:
   `dashboardPrefix(locale)` from `lib/paths.ts`, never by hand. Legacy un-prefixed paths are
   permanent redirects — backend links stay locale-neutral (`/dashboard/...`) and get localized on
   arrival, so old notification links keep working.
-- **Instance mode.** `lib/siteMode.ts` reads `/api/site/config` once. On a public-site instance
+- **Instance mode.** `lib/siteMode.ts` reads `/api/site/config` once; the API also stamps the answer
+  (`window.__SI_SITE_LANDING_ONLY__`) into every HTML shell it serves (`Internal/SiteModeScript.cs`,
+  marker comment in `web/index.html`), so a backend-served instance knows its shape at first paint
+  and the landing never flashes a sign-in affordance it would take back - the probe is the fallback
+  for environments without the stamp (vite dev). On a public-site instance
   (`PublicSite:LandingOnly` on the backend) the landing's entry points and calls to action go to
   the install section and the repository instead of a login, and `/login` plus every dashboard
   route lead back to the localized landing (`AppArea` in `App.tsx`). An unreadable answer means

@@ -46,7 +46,24 @@ writeFileSync(path.join(dist, 'og-version'), `${Math.floor(Date.now() / 1000)}\n
 const baseUrl = (process.env.SEO_BASE_URL || copy.baseUrl).replace(/\/+$/, '');
 
 // The shell vite just wrote
-const shell = readFileSync(shellPath, 'utf8');
+let shell = readFileSync(shellPath, 'utf8');
+
+// The published landing is served by nginx, so the backend's stamping middleware
+// (Internal/SiteModeScript) never sees these documents: SITE_LANDING_ONLY bakes the
+// instance shape into every shell the same way the middleware does at serve time.
+// Unset (docker, self-hosted, dev) the marker survives and the backend stamps when it
+// serves; a dist served without either just probes GET /api/site/config.
+const siteLandingOnly = process.env.SITE_LANDING_ONLY;
+
+if (siteLandingOnly === '1' || siteLandingOnly === '0') {
+  const marker = '<!--si:site-mode-->';
+
+  if (!shell.includes(marker)) {
+    throw new Error('SITE_LANDING_ONLY is set but the built shell carries no site-mode marker');
+  }
+
+  shell = shell.replaceAll(marker, `<script>window.__SI_SITE_LANDING_ONLY__=${siteLandingOnly === '1' ? 'true' : 'false'};</script>`);
+}
 
 /**
  * Writes one page: the built shell with its title, description, language and meta block

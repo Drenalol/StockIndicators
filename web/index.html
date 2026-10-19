@@ -14,6 +14,11 @@
          injects it itself, and only on a Telegram launch (tgWebApp* in the hash) —
          see lib/telegram.ts. initData never depended on the script anyway: it is
          parsed from the tgWebAppData URL hash. -->
+    <!-- Site-mode stamp placeholder: the API replaces this comment with a script setting
+         window.__SI_SITE_LANDING_ONLY__ when it serves the shell (see Internal/SiteModeScript),
+         so a public landing knows its shape on the first paint. Served without the stamp
+         (vite dev, static hosting) the frontend probes GET /api/site/config instead. -->
+    <!--si:site-mode-->
     <script>
       try {
         var theme = localStorage.getItem('theme');

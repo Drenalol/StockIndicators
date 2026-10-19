@@ -42,7 +42,9 @@ publish="$root/artifacts/landing-publish"
 
 echo "deploy-landing: building the frontend (SEO_BASE_URL=$SI_SEO_BASE_URL)"
 [[ -d $root/web/node_modules ]] || (cd "$root/web" && npm ci --no-audit --no-fund)
-(cd "$root/web" && SEO_BASE_URL="$SI_SEO_BASE_URL" npm run build >/dev/null)
+# SITE_LANDING_ONLY: nginx serves these shells, so the backend's runtime stamp never reaches
+# them - the landing build bakes landingOnly=true into every shell instead (gen-seo-pages).
+(cd "$root/web" && SEO_BASE_URL="$SI_SEO_BASE_URL" SITE_LANDING_ONLY=1 npm run build >/dev/null)
 (cd "$root/web" && SEO_BASE_URL="$SI_SEO_BASE_URL" npm run check:seo)
 
 echo "deploy-landing: publishing the API for linux-x64"

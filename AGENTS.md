@@ -43,7 +43,7 @@ cd web && npm run lint && npm run typecheck && npm run check:i18n && npm run che
 ```
 
 **Never push without the owner's explicit word.** Commit as the configured author
-(`Bogdan Yanysh <4239027+Drenalol@users.noreply.github.com>`).
+(`Bogdan Yanysh <4239087+Drenalol@users.noreply.github.com>`).
 
 Never leave a dev server or `docker compose` stack running after a check: kill the process /
 `docker compose down`. When killing test instances, kill by PID - the owner's own dev instance

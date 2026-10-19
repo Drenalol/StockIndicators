@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
@@ -42,7 +42,9 @@ export interface SectionTocItem {
  */
 export function SectionToc({ items, label }: { items: SectionTocItem[]; label: string }) {
   const reducedMotion = useReducedMotion();
-  const [active, setActive] = useState(items[0]?.id ?? '');
+  // Nothing is lit until the spy has computed: a reload at the bottom (restored scroll)
+  // must not paint the first tick as active and then hand the light to the real one.
+  const [active, setActive] = useState('');
   // the landing sections are conditional (the gallery) - rebuild the spy only when the
   // set of ids actually changed, not on every landing re-render
   const idsKey = items.map((item) => item.id).join('|');
@@ -53,7 +55,9 @@ export function SectionToc({ items, label }: { items: SectionTocItem[]; label: s
   const restPosRef = useRef(0);
   const restTimerRef = useRef(0);
 
-  useEffect(() => {
+  // A layout effect, not a passive one: the first tick must already be the right one in
+  // the very first paint, or a restored-scroll reload visibly relights the navigation.
+  useLayoutEffect(() => {
     const ids = idsKey.split('|');
 
     if (ids.length === 0) return;

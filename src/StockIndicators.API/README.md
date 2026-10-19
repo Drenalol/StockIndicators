@@ -62,7 +62,10 @@ Tests/                        xUnit suites: unit tests and provider integration 
 ```
 
 Charts: the same `ChartData` JSON feeds the web chart core; alert images are rasterized by headless
-Chromium (Microsoft.Playwright) over the frontend's `render/renderer.html` page.
+Chromium (Microsoft.Playwright) over the frontend's `render/renderer.html` page. A publish copies
+the Playwright node driver of the build platform only: publishing from a mac or a windows box for
+a Linux server needs `-p:PlaywrightPlatform=linux-x64`, or the deployed renderer has no browser to
+start (the Dockerfile builds inside the target image and needs nothing).
 
 ## Tests
 

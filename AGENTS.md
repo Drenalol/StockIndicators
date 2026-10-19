@@ -164,10 +164,19 @@ renders: code, kind, env section, docs URL, markets, fields. Semantics:
 - Every behavior change gets a test in `Tests/StockIndicators.Indicators.Tests` — the suite is
   the contract for the rules/indicators pipeline.
 - Alert images render through headless Chromium against the frontend's `renderer` page
-  (`ChartImage` section, off by default); the runtime image carries the browser - keep the
-  Dockerfile's chromium/font layers in sync with the frontend's rendering needs. Without a
-  renderer (no `ChartImage:PageHtmlPath`, which is how a public instance runs) the share
-  endpoints redirect to the static brand card, so a link is never left without a picture.
+  (`ChartImage` section; `ChartImage:PageHtmlPath` is null in `appsettings.json`, but the
+  Dockerfile turns the renderer on with an `ENV` and ships the browser - the published landing
+  gets its real link-preview pictures from it, so keep the Dockerfile's chromium/font layers in
+  sync with the frontend's rendering needs). Without a working renderer (path unset or unreadable,
+  or Chromium that will not start) the share endpoints redirect to the static brand card, so a
+  link is never left without a picture.
+- The project's own landing is published by `packaging/deploy-landing.sh` (host details in the
+  gitignored `packaging/deploy-landing.env`). A publish from a mac must carry
+  `-p:PlaywrightPlatform=linux-x64` - MSBuild otherwise copies only the darwin node driver and
+  the server's renderer starts without Chromium, degrading every link preview to the brand card -
+  and the service's env file must keep `ChartImage__PageHtmlPath` (`appsettings.json` ships it
+  null, only the Dockerfile's ENV sets it); the script enforces both and verifies the picture
+  after the restart.
 - **Public-site mode** (`PublicSite:LandingOnly`, how the project's own landing is published):
   `Program.cs` registers `AddPublicSite` instead of the application, so no session, database,
   provider, hub or scheduler exists to be reached, and `PublicSiteGate` answers every other

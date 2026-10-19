@@ -13,6 +13,7 @@ node_modules/
 .env.local
 .env.*.local
 !packaging/.env.example
+packaging/deploy-landing.env
 !web/.env.example
 appsettings.Development.json
 appsettings.Local.json

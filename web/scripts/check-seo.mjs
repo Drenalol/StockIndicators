@@ -30,7 +30,9 @@ const tag = (html, selector) => {
   const match = new RegExp(`<meta [^>]*${selector}[^>]*content="([^"]*)"`).exec(html) ??
     new RegExp(`<link [^>]*${selector}[^>]*href="([^"]*)"`).exec(html);
 
-  return match ? match[1] : null;
+  // the generator escapes every attribute value, so an ampersand arrives as &amp; -
+  // a picture URL (lang=..&v=..) must compare equal to the value it was built from
+  return match ? match[1].replace(/&amp;/g, '&') : null;
 };
 
 for (const page of pages) {

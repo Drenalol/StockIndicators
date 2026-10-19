@@ -36,6 +36,11 @@ if (!existsSync(shellPath)) {
   throw new Error('dist/index.html is missing - run "vite build" before "node scripts/gen-seo-pages.mjs"');
 }
 
+// The stamp the picture URLs carry (see seo-lib's imageVersion): the crawlers must be
+// handed a new URL, or the picture they cached for the old one outlives the deployment
+// that made the picture real again.
+writeFileSync(path.join(dist, 'og-version'), `${Math.floor(Date.now() / 1000)}\n`);
+
 // || and not ??: a docker build-arg left unset arrives as an empty string, and an empty base
 // would silently strip the host from every canonical instead of falling back to copy.json
 const baseUrl = (process.env.SEO_BASE_URL || copy.baseUrl).replace(/\/+$/, '');

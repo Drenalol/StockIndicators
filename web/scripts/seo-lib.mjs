@@ -90,15 +90,33 @@ export const brandImage = (baseUrl, locale) =>
   `${baseUrl}${locale === defaultLocale ? copy.brandImage : `/og/brand-${locale}.png`}`;
 
 /**
+ * The stamp of the build the picture URLs carry. A messenger caches a preview picture by
+ * its URL and not by the page that named it, so every build must hand the crawlers a new
+ * URL: the brand card the messengers cached while the renderer was down would otherwise
+ * stick to every page pointing at the old URL long after the real renders are back. Read
+ * lazily from dist so the generator and the checker of one dist always agree about it; a
+ * dist built before the stamp existed simply carries no version.
+ */
+const imageVersion = () => {
+  try {
+    return readFileSync(path.join(dist, 'og-version'), 'utf8').trim();
+  } catch {
+    return '';
+  }
+};
+
+const imageParams = (locale) => `lang=${locale}${imageVersion() ? `&v=${imageVersion()}` : ''}`;
+
+/**
  * The landing page and the indicator catalog are pictured with a real example chart (real
  * candles, a candle the production handler triggers on) under the brand name - not with a
  * drawn decoration. Which indicator that is belongs to the deployment
  * (ShareImage:LandingIndicator), never to the request: the endpoint is anonymous and
  * Cloudflare keeps its answers for a week.
  */
-export const landingImage = (baseUrl, locale) => `${baseUrl}/api/share/landing/image.png?lang=${locale}`;
+export const landingImage = (baseUrl, locale) => `${baseUrl}/api/share/landing/image.png?${imageParams(locale)}`;
 
-export const indicatorImage = (baseUrl, name, locale) => `${baseUrl}/api/share/indicators/${name}/image.png?lang=${locale}`;
+export const indicatorImage = (baseUrl, name, locale) => `${baseUrl}/api/share/indicators/${name}/image.png?${imageParams(locale)}`;
 
 export const brandAlt = (locale) => copy.brandImageAlt[locale] ?? copy.brandImageAlt[defaultLocale];
 

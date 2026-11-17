@@ -38,14 +38,11 @@ services:
       retries: 10
 
   api:
-    build:
-      # the image is built from the repository root: the frontend build (web/) is a stage of it
-      context: ..
-      dockerfile: Dockerfile
-      args:
-        # absolute canonical/og/sitemap URLs in the SEO shells; leave empty for a LAN install,
-        # set to the public scheme+host when the instance is published behind a domain
-        SEO_BASE_URL: ${SEO_BASE_URL:-}
+    # The published image: docker compose up pulls it, nothing is built on your machine.
+    # To build the same image from this checkout instead (an architecture without a published
+    # tag, or your own SEO_BASE_URL):
+    #   docker compose -f docker-compose.yml -f docker-compose.source.yml up -d --build
+    image: ghcr.io/drenalol/stockindicators:${SI_IMAGE_TAG:-latest}
     depends_on:
       postgres: { condition: service_healthy }
     # headless Chromium (alert chart images) wants more than the default 64 MB of /dev/shm

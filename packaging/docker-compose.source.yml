@@ -1,0 +1,23 @@
+# Builds the image from this checkout instead of pulling the published one. It overrides the
+# `image:` service rather than replacing it, so the stack (Postgres, optional Redis, ports,
+# environment) stays in docker-compose.yml:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.source.yml up -d --build
+#
+# Worth it in three cases: an architecture the published image does not cover, your own
+# SEO_BASE_URL baked into the static link-preview pages, or a change to the code you want to run
+# as the real single-origin image rather than as dotnet run + vite dev.
+services:
+  api:
+    build:
+      # the image is built from the repository root: the frontend build (web/) is a stage of it
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        # absolute canonical/og/sitemap URLs in the SEO shells; leave empty for a LAN install,
+        # set to the public scheme+host when the instance is published behind a domain
+        SEO_BASE_URL: ${SEO_BASE_URL:-}
+        # what Settings -> About reports. The release workflow passes the tag and the commit;
+        # leave both empty and the build says it is not a published release (Dockerfile defaults).
+        APP_VERSION: ${SI_BUILD_VERSION:-}
+        GIT_SHA: ${SI_BUILD_SHA:-}

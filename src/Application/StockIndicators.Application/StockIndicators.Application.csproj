@@ -24,7 +24,7 @@
         <PackageReference Include="LazyCache" Version="2.4.0" />
         <PackageReference Include="MediatR" Version="14.2.0" />
         <!-- Not in the shared framework: the subscription PATCH contract type JsonPatchDocument -->
-        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.10" />
+        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="11.0.0" />
         <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
         <!-- Pin patched version: DapperExtensions 1.7.0 (unmaintained) hard-depends on vulnerable Oracle.ManagedDataAccess.Core 2.19.110; Oracle provider is never used -->
         <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.180" />

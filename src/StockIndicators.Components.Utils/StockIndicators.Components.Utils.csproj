@@ -1,6 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
+        <PackageReference Include="FacioQuo.Stock.Indicators" Version="3.1.0" />
+        <PackageReference Include="MediatR" Version="14.3.0" />
+        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.15" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
         <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
         <PackageReference Include="System.Linq.Async" Version="7.0.1" />

@@ -301,6 +301,13 @@
     "legal": {
       "title": "Legal",
       "description": "Rules of use, privacy policy, disclaimer and open source licenses."
+    },
+    "about": {
+      "title": "About this instance",
+      "description": "Which build is running here and where its code lives.",
+      "version": "Version",
+      "build": "Build",
+      "repository": "Source code"
     }
   },
   "subscriptions": {

@@ -22,8 +22,16 @@ RUN npm run build
 # --- backend: publish the API (the whole src/ tree, sibling project references) ---
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
+# The release workflow passes the tag it is building (APP_VERSION, without the leading "v") and
+# the commit that tag pointed at (GIT_SHA). Both land in AssemblyInformationalVersion and reach
+# the UI through GET /api/config, so Settings -> About can answer which build an instance runs.
+# Either can be empty - a plain docker build, a compose build from this checkout: the version then
+# falls back to the pre-release one from Directory.Build.props and the commit is left out.
+ARG APP_VERSION
+ARG GIT_SHA
 COPY src/ ./
-RUN dotnet publish StockIndicators.API/StockIndicators.API.csproj -c Release -o /app/publish
+RUN dotnet publish StockIndicators.API/StockIndicators.API.csproj -c Release -o /app/publish \
+      -p:Version=${APP_VERSION:-1.0.0-dev} -p:SourceRevisionId=$GIT_SHA
 
 # --- runtime: aspnet on Ubuntu Noble + the Chromium build matching Microsoft.Playwright ---
 # The browser registry is copied from the official Playwright image of the same version as

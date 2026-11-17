@@ -301,6 +301,13 @@
     "legal": {
       "title": "Rechtliches",
       "description": "Nutzungsregeln, Datenschutzerklärung, Haftungsausschluss und Open-Source-Lizenzen."
+    },
+    "about": {
+      "title": "Über diese Instanz",
+      "description": "Welche Build hier läuft und wo ihr Code liegt.",
+      "version": "Version",
+      "build": "Build",
+      "repository": "Quellcode"
     }
   },
   "subscriptions": {

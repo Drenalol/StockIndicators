@@ -7,6 +7,7 @@ using StockIndicators.Application.Notifications.Channels;
 using StockIndicators.Application.Notifications.Telegram;
 using StockIndicators.Application.Rules;
 using StockIndicators.Infrastructure.Processing;
+using StockIndicators.Internal;
 
 namespace StockIndicators.Controllers;
 
@@ -48,6 +49,10 @@ public class ConfigController : ControllerBase
       minCooldownSeconds = Limits.MinCooldownSeconds,
       maxOutputs = Limits.MaxOutputChannels,
       telegramBotLink = _telegramBotOptions.Value.BotLink,
+      // Which build this is (see Internal/AppVersion.cs). Sign-in is required for /api/config on
+      // purpose: a public landing has no reason to advertise the release its instances run.
+      version = AppVersion.Version,
+      commit = AppVersion.Commit,
       // WhatsApp needs server-side Meta credentials and the (default-off) toggle; the web
       // hides the channel until both hold - an enabled-but-unwired picker entry is a lie
       whatsappEnabled = _providerSettings.IsEnabled(_configuration, "whatsapp") && _whatsAppOptions.Value.IsConfigured

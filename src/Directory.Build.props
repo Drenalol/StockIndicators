@@ -5,5 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn> <!-- Disable warning "Missing XML comment for publicly visible type or member" -->
+    <!-- The version a published release carries: the release workflow replaces it with the tag
+         (Dockerfile's APP_VERSION build arg), so a checkout built from source - including
+         dotnet run - says it was not published instead of claiming a release. The git commit is
+         stamped in the same way through SourceRevisionId; both surface under Settings -> About. -->
+    <Version>1.0.0-dev</Version>
   </PropertyGroup>
 </Project>

@@ -436,6 +436,10 @@ export interface AppConfig {
   maxOutputs?: number;
   /** WhatsApp delivery is configured on the server (Meta credentials present) */
   whatsappEnabled?: boolean;
+  /** What this build is: the release tag the image was published from, "1.0.0-dev" from source */
+  version: string;
+  /** Commit id the build was stamped with, short form; null when the build did not say */
+  commit?: string | null;
 }
 
 export const auth = {

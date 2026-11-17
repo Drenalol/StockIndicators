@@ -9,6 +9,8 @@ import { useToast } from '@/hooks/use-toast';
 import { useTranslation, getTranslations, SUPPORTED_LOCALES, LOCALE_NAMES, type Locale } from '@/i18n';
 import { getBrowserTimezone, getTimezoneGroups, formatTzLabel } from '@/lib/timezones';
 import { dashboardPrefix } from '@/lib/paths';
+import { useLimits } from '@/lib/limits';
+import { GITHUB_URL } from '@/lib/support';
 import { openExternalUrl } from '@/lib/externalLink';
 import ProvidersSection from '@/components/ProvidersSection';
 import OnboardingCard from '@/components/OnboardingCard';
@@ -27,6 +29,9 @@ import {
   Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut,
 } from '@/components/ui/command';
 import type { TelegramChatDto, TelegramLinkDto } from '@/types/contracts';
+
+/** "owner/name" out of the repository URL, so the About row does not hardcode the owner twice. */
+const REPOSITORY_LABEL = GITHUB_URL.replace(/^https?:\/\/[^/]+\//, '');
 
 /**
  * Tooltip whose bubble is readable on touch too: Radix's Tooltip intentionally
@@ -134,6 +139,10 @@ export default function SettingsPage() {
   }, [setSearchParams]);
 
   const isSession = profile !== null;
+
+  // The build stamp the About tab reports: /api/config is the request the server limits already
+  // come from, so reading the version here costs no extra round trip.
+  const config = useLimits();
 
   // The shared RQ cache (30 s staleTime) replaces the old module-level cache:
   // a revisit within the window renders instantly without a request
@@ -504,6 +513,47 @@ export default function SettingsPage() {
           </TabsContent>
 
           <TabsContent value="about" forceMount className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Info className="h-4 w-4" />
+                  {t.settings.about.title}
+                </CardTitle>
+                <CardDescription>{t.settings.about.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {config ? (
+                  <dl className="grid gap-x-8 gap-y-1.5 text-sm sm:grid-cols-[max-content_1fr]">
+                    <dt className="text-muted-foreground">{t.settings.about.version}</dt>
+                    <dd className="font-mono tabular-nums">{config.version}</dd>
+                    {config.commit && (
+                      <>
+                        <dt className="text-muted-foreground">{t.settings.about.build}</dt>
+                        <dd className="font-mono">{config.commit}</dd>
+                      </>
+                    )}
+                    <dt className="text-muted-foreground">{t.settings.about.repository}</dt>
+                    <dd className="min-w-0">
+                      <a
+                        href={GITHUB_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="truncate text-primary hover:underline underline-offset-2"
+                      >
+                        {REPOSITORY_LABEL}
+                      </a>
+                    </dd>
+                  </dl>
+                ) : (
+                  <div className="space-y-2" role="status">
+                    <span className="sr-only">{t.common.loading}</span>
+                    <Skeleton className="h-4 w-1/2" />
+                    <Skeleton className="h-4 w-2/3" />
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">

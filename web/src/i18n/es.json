@@ -301,6 +301,13 @@
     "legal": {
       "title": "Legal",
       "description": "Reglas de uso, política de privacidad, aviso legal y licencias de código abierto."
+    },
+    "about": {
+      "title": "Acerca de esta instancia",
+      "description": "Qué versión se ejecuta aquí y dónde está su código.",
+      "version": "Versión",
+      "build": "Compilación",
+      "repository": "Código fuente"
     }
   },
   "subscriptions": {

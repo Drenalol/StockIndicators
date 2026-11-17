@@ -10,7 +10,7 @@ import { api } from '@/services/api';
 import { qk } from '@/lib/query';
 import { useSiteMode } from '@/lib/siteMode';
 import { cn } from '@/lib/utils';
-import { BOOSTY_URL } from '@/lib/support';
+import { BOOSTY_URL, GITHUB_URL } from '@/lib/support';
 import { BoostyIcon } from '@/components/BoostyIcon';
 import { GitHubIcon } from '@/components/GitHubIcon';
 import { Logo } from '@/components/Logo';
@@ -116,8 +116,6 @@ function RuleTreePreview({ preview, andLabel, orLabel, groupLabel }: {
  * scroll" app-layout rule covers the dashboard pages inside MainLayout, not
  * this one.
  */
-const GITHUB_URL = 'https://github.com/Drenalol/StockIndicators';
-
 export default function LandingPage() {
   const { t, locale, setLocale } = useTranslation();
   const params = useParams();

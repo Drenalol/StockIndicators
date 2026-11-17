@@ -25,8 +25,10 @@ src/    .NET 10 solution (stock-indicators.sln)
   tools/tinkoff-tls-bridge           Go dev tool (see Running locally)
 web/    React 19 + Vite + TypeScript + Tailwind v4 + shadcn/ui (PWA); no test runner -
         the checks are lint + typecheck + check:i18n + check:seo + build
-packaging/  docker-compose, .env.example, image wiring
-docs/   DATA_SOURCES.md, screenshots (README)
+packaging/  docker-compose (pulls the published image), docker-compose.source.yml (builds it),
+        .env.example, image wiring
+docs/   DATA_SOURCES.md, screenshots (README), releases/ (the notes each GitHub Release publishes)
+.github/  ci.yml (the checks), release.yml (tag -> image -> release), issue forms
 ```
 
 Requests go Controller → `IQuery`/`ICommand` → pipeline behavior (validation, logging) →
@@ -195,6 +197,44 @@ renders: code, kind, env section, docs URL, markets, fields. Semantics:
   read by `RulePresetCatalog`), not a seeded table: the public catalog serves them without a
   database, and changing a preset is a release change guarded by `RulePresetCatalogTests` instead
   of a migration.
+
+## Image and release
+
+`packaging/docker-compose.yml` runs the **published** image
+(`ghcr.io/drenalol/stockindicators:${SI_IMAGE_TAG:-latest}`) and has no `build:` at all: a fresh
+`docker compose up` pulls and never compiles. Building from the checkout is the
+`docker-compose.source.yml` override (`-f docker-compose.yml -f docker-compose.source.yml up -d
+--build`), which merges into the same service and therefore replaces the same tag locally - after a
+source build the plain command keeps using it. `SEO_BASE_URL` only exists in that path: it is baked
+into the SEO shells at build time, so a pulled image keeps relative canonical/og/sitemap addresses
+(documented in README and `.env.example`; runtime canonicals would be the follow-up that removes the
+limitation).
+
+The version an instance reports is the release tag, and there is no version file to bump besides the
+release notes: `src/Directory.Build.props` carries the pre-release `1.0.0-dev` for source builds, the
+Dockerfile turns `APP_VERSION`/`GIT_SHA` build args into `-p:Version`/`-p:SourceRevisionId` (both
+tolerate being empty), `StockIndicators.API/Internal/AppVersion.cs` splits the resulting
+informational version, and `GET /api/config` hands it to Settings → About. `/api/config` is
+`[Authorize]` on purpose: the public landing never advertises which release the instances run.
+`AppVersionTests` guards the parsing.
+
+Releasing (never move or re-tag a published release - cut the next one):
+
+1. `main` is green in CI (`ci.yml`), including the nine-locale i18n commit.
+2. Add `docs/releases/vX.Y.Z.md` - that file *is* the release text (the workflow appends the image
+   table and the pinned digest to it).
+3. `git tag vX.Y.Z && git push origin vX.Y.Z`. `release.yml` then runs `ci.yml` as a reusable job,
+   builds the image once per architecture (`ubuntu-24.04` / `ubuntu-24.04-arm`, both native), merges
+   them with `docker buildx imagetools create` into `:X.Y.Z` plus `:X.Y` and `:latest` (the aliases
+   skip a pre-release), and creates the GitHub Release with the compose files as assets.
+4. Verify anonymously - a private package is the classic silent failure of this flow:
+   `docker manifest inspect ghcr.io/<owner>/stockindicators:latest` without a login must succeed and
+   list both architectures. A package pushed from a public repository inherits public visibility;
+   the image path stays lowercase while the repository is not (`${GITHUB_REPOSITORY_OWNER,,}`).
+
+`workflow_dispatch` on `release.yml` re-publishes an existing tag (the release job edits the release
+and `--clobber`s the assets instead of failing). The per-architecture tags (`:1.0.0-arm64`) stay in
+the package on purpose: they are the input of the merge and the fallback when it misbehaves.
 
 ## Data sources
 

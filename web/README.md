@@ -15,6 +15,7 @@ npm run build       # → dist/ (+ the alert-chart renderer and the static link-
 - Optional environment goes in `.env.local` — see `.env.example`.
 - `npm run build` also builds `dist/render/` (the standalone chart renderer the backend
   screenshots alerts with) and generates the static link-preview shells from `seo/copy.json`;
-  set `SEO_BASE_URL` to the domain your instance is published under before building.
+  set `SEO_BASE_URL` to the domain your instance is published under before building. The published
+  image passes no `SEO_BASE_URL`, so its shells keep relative addresses (see `packaging/`).
 - Interface texts live in `src/i18n/<locale>.json`; all nine locales must stay in sync,
   `npm run check:i18n` enforces it.

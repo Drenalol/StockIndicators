@@ -1,5 +1,9 @@
 # Stock Indicators
 
+[![CI](https://github.com/Drenalol/StockIndicators/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Drenalol/StockIndicators/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Drenalol/StockIndicators)](https://github.com/Drenalol/StockIndicators/releases)
+![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)
+
 Self-hosted technical-indicator monitoring for your own trading instruments: combine indicators
 into rule trees, subscribe a rule to an instrument and time frame, and get a notification the
 moment the condition fires — with the chart fragment that triggered it.
@@ -15,7 +19,7 @@ with your own API keys (BYOK), and everything is stored in your own database.
 ```bash
 git clone https://github.com/Drenalol/StockIndicators && cd StockIndicators/packaging
 cp .env.example .env          # then set SI_PASSWORD (and POSTGRES_PASSWORD)
-docker compose up -d
+docker compose up -d          # pulls the published image
 ```
 
 Open http://localhost:8080, sign in with the password, and connect your data providers under
@@ -24,6 +28,25 @@ Open http://localhost:8080, sign in with the password, and connect your data pro
 That single image serves the frontend and the API from one origin, runs the alert scheduler, and
 renders alert chart images with a built-in headless Chromium. Redis (a second-level candle cache)
 is optional: `docker compose --profile redis up -d`.
+
+The image is `ghcr.io/drenalol/stockindicators`, published for `linux/amd64` and `linux/arm64` under
+one tag, so the same `docker compose up -d` works on a desktop, a small server or a Pi. Put
+`SI_IMAGE_TAG=1.0.0` in `.env` to pin an installation to a release instead of following `latest`;
+**Settings → About** shows which build is running.
+
+### Building the image yourself
+
+Worth doing in two cases: the instance is published behind a domain and you want the absolute
+canonical / `og:url` / `sitemap.xml` addresses baked in (`SEO_BASE_URL`), or you changed the code.
+
+```bash
+SEO_BASE_URL=https://your.domain SI_BUILD_VERSION=1.0.0 \
+docker compose -f docker-compose.yml -f docker-compose.source.yml up -d --build
+```
+
+The build replaces the published tag locally, so the plain `docker compose up -d` keeps using it
+afterwards. A build that passes neither `SEO_BASE_URL` nor `SI_BUILD_VERSION` is what anyone without
+a domain gets by building from source, and it reports itself as `1.0.0-dev`.
 
 A fresh instance tells you exactly what it still needs:
 
@@ -133,9 +156,11 @@ instance keeps the flag off.
 ```
 src/          .NET solution: API, Application, Domain, Infrastructure, provider projects
 web/          React + Vite frontend (PWA), the chart renderer and the static SEO pages
-packaging/    docker-compose, .env.example
+packaging/    docker-compose (published image), docker-compose.source.yml (build from source),
+              .env.example
 Dockerfile    single image: frontend build + backend + headless Chromium for alert images
-docs/         DATA_SOURCES.md and friends
+docs/         DATA_SOURCES.md, the release notes behind each GitHub Release
+.github/      CI, the release workflow (tag -> image -> release), issue forms
 ```
 
 ## Development
@@ -147,6 +172,10 @@ cd web && npm run lint && npm run typecheck && npm run check:i18n
 
 Interface texts live in `web/src/i18n/<locale>.json` and all nine locales must move together —
 `npm run check:i18n` fails the build on a missing or stale key.
+
+`docker compose up -d` pulls the published image, so a code change only reaches the container
+through `docker compose -f docker-compose.yml -f docker-compose.source.yml up -d --build` - the
+plain command will otherwise start the released build next to your modified source.
 
 ## License and disclaimer
 

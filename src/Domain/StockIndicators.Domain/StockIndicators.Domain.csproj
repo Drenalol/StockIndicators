@@ -2,7 +2,7 @@
 
     <ItemGroup>
         <PackageReference Include="FacioQuo.Stock.Indicators" Version="3.0.1" />
-        <PackageReference Include="MediatR" Version="14.2.0" />
+        <PackageReference Include="MediatR" Version="15.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
         <PackageReference Include="System.Reactive" Version="7.0.0" />
     </ItemGroup>

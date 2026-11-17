@@ -2,16 +2,16 @@
 
     <ItemGroup>
         <PackageReference Include="LazyCache" Version="2.4.0" />
-        <PackageReference Include="MediatR" Version="14.2.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.12" />
-        <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.12" />
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.12" />
-        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.12" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
+        <PackageReference Include="MediatR" Version="14.3.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.15" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.15" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.15" />
+        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.15" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.15">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.15" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
         <PackageReference Include="RateLimiter" Version="2.2.0" />
         <PackageReference Include="Refit" Version="14.0.1" />

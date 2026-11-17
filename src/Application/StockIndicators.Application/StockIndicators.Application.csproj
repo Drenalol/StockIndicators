@@ -19,18 +19,18 @@
 
   <ItemGroup>
         <PackageReference Include="DapperExtensions" Version="1.7.0" />
-        <PackageReference Include="FacioQuo.Stock.Indicators" Version="3.0.1" />
-        <PackageReference Include="FluentValidation" Version="12.1.1" />
+        <PackageReference Include="FacioQuo.Stock.Indicators" Version="3.1.0" />
+        <PackageReference Include="FluentValidation" Version="12.2.0" />
         <PackageReference Include="LazyCache" Version="2.4.0" />
-        <PackageReference Include="MediatR" Version="14.2.0" />
+        <PackageReference Include="MediatR" Version="14.3.0" />
         <!-- Not in the shared framework: the subscription PATCH contract type JsonPatchDocument -->
-        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.10" />
+        <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.15" />
         <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
         <!-- Pin patched version: DapperExtensions 1.7.0 (unmaintained) hard-depends on vulnerable Oracle.ManagedDataAccess.Core 2.19.110; Oracle provider is never used -->
-        <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.180" />
+        <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.330" />
         <PackageReference Include="Serilog" Version="4.4.0" />
-        <PackageReference Include="Drenalol.Telegram.Bot.Forms" Version="1.0.0" />
-        <PackageReference Include="Telegram.Bot" Version="22.10.2.1" />
+        <PackageReference Include="Drenalol.Telegram.Bot.Forms" Version="1.2.2" />
+        <PackageReference Include="Telegram.Bot" Version="22.10.4" />
         <PackageReference Include="WebPush" Version="1.0.13" />
     </ItemGroup>
 

@@ -243,4 +243,4 @@ jobs:
             gh release create "$TAG" --title "$TAG" --notes-file "$RUNNER_TEMP/notes.md" \
               --prerelease="$PRERELEASE" "${assets[@]}"
           fi
-          gh release view "$TAG" --json tagName,prerelease,url,assets
+          gh release view "$TAG" --json tagName,name,isPrerelease,url,assets

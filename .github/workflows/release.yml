@@ -186,7 +186,7 @@ jobs:
           VERSION: ${{ needs.meta.outputs.version }}
           MINOR: ${{ needs.meta.outputs.minor }}
           IMAGE: ${{ needs.meta.outputs.image }}
-          DIGEST: ${{ needs.meta.outputs.digest }}
+          DIGEST: ${{ needs.manifest.outputs.digest }}
           PRERELEASE: ${{ needs.meta.outputs.prerelease }}
         run: |
           set -euo pipefail
@@ -232,8 +232,11 @@ jobs:
         run: |
           set -euo pipefail
           # gh takes asset files as positional arguments, and the default compose file only works
-          # together with the source override and .env.example, so all three travel
-          assets=(packaging/docker-compose.yml packaging/docker-compose.source.yml packaging/.env.example)
+          # together with the source override and the env example, so all three travel. The env
+          # template goes through a copy: an asset cannot be named ".env.example" (a leading dot),
+          # and gh would otherwise upload it under a "default." prefix.
+          cp packaging/.env.example "$RUNNER_TEMP/env.example"
+          assets=(packaging/docker-compose.yml packaging/docker-compose.source.yml "$RUNNER_TEMP/env.example")
           # re-running a release must not fail on the tag or on assets that are already attached
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title "$TAG" --notes-file "$RUNNER_TEMP/notes.md" \

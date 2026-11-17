@@ -1,0 +1,55 @@
+name: Bug report
+description: Something does not work as documented
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One installation, one operator: please describe how *your* instance runs, it changes what
+        can be wrong. No screenshots with provider keys, bot tokens or your instance address, please.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Steps to reproduce, what you expected, what you got instead.
+      placeholder: |
+        1. Open Settings -> Providers, run the connection test for Alpaca
+        2. Expected: the test reports the assets my key can read
+        3. Got: "429 Too Many Requests" every time
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Settings -> About, both the version and the build id.
+      placeholder: "1.0.0 (abc1234)"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How does this instance run
+      options:
+        - Prebuilt image (docker compose up)
+        - Image built from source (docker compose ... up --build)
+        - From source (dotnet run + vite dev)
+        - Other / I do not know
+    validations:
+      required: true
+  - type: textarea
+    id: providers
+    attributes:
+      label: Providers and channels involved
+      description: Which data provider (Tinkoff, Alpaca, Binance, BusinessQuant, Yahoo) and which
+        notification channel the problem touches. Write "none" if it is unrelated.
+      placeholder: |
+        Tinkoff (candles), Telegram (delivery)
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Backend log lines around the failure. Secrets are never logged; still, take a
+        look before pasting. Rendered as code, no need for backticks.
+      render: shell

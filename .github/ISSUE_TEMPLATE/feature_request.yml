@@ -1,0 +1,36 @@
+name: Feature request
+description: An indicator, a rule capability, a channel, an install path
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The product is a single-operator, self-hosted installation with your own provider keys
+        (BYOK). Things that would need a hosted service, shared market data or a second kind of
+        user are out of scope by design - see the README and docs/DATA_SOURCES.md.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What this unlocks for you
+      description: The situation you are in and what you could do afterwards. A concrete rule you
+        cannot express today is worth a page of general ideas.
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: What you do instead
+      description: A script, another tool, a manual check.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where it belongs
+      options:
+        - Indicators / rule language
+        - Providers (a new source, a capability of an existing one)
+        - Notification channels / message content
+        - Charts / UI
+        - Installation and packaging
+        - Internationalization
+        - Other

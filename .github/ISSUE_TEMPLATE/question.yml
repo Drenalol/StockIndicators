@@ -1,0 +1,27 @@
+name: Question
+description: How something works, or how to set something up
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The README covers installation, configuration and the provider keys; the public indicator
+        pages document every indicator with an example chart. If you got there and it is still
+        unclear, that is the gap worth reporting.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What you are trying to do, and what you already read or tried.
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How does this instance run
+      options:
+        - Prebuilt image (docker compose up)
+        - Image built from source (docker compose ... up --build)
+        - From source (dotnet run + vite dev)
+        - Not running it yet

@@ -1,0 +1,13 @@
+# Blank issues are off: every issue arrives through one of the three forms, so it carries the
+# version and the installation shape by itself.
+blank_issues_enabled: false
+contact_links:
+  - name: Installation and configuration
+    url: https://github.com/Drenalol/StockIndicators#readme
+    about: Docker install, the environment variables, provider keys, publishing behind a domain.
+  - name: Indicator reference
+    url: https://stockindicators.app/en/indicators/
+    about: Every indicator with an example chart, its parameters and ready-made rule presets.
+  - name: What a data source allows
+    url: https://github.com/Drenalol/StockIndicators/blob/main/docs/DATA_SOURCES.md
+    about: Each provider's own terms for the data you pull with your own key.

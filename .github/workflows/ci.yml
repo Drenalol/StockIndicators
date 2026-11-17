@@ -1,0 +1,77 @@
+# The checks the repository asks for locally (see AGENTS.md "Commands"), so a green run here
+# means the same checkout is green on any machine. The release workflow runs these before it
+# publishes an image; this workflow makes them visible on every commit.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # the release workflow gates an image on exactly these checks
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend (.NET)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: |
+            10.0.x
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v6
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/*.props') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
+      - name: Build
+        run: dotnet build src/stock-indicators.sln -c Release --nologo
+
+      # The suite is the contract for the rules/indicators pipeline (AGENTS.md).
+      - name: Test
+        run: dotnet test src/stock-indicators.sln -c Release --no-build --nologo
+
+  web:
+    name: Frontend
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+
+      # node:24-alpine is the frontend stage of the Dockerfile, so CI builds on the same major
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # all nine locale catalogs must carry the same keys as en.json
+      - name: i18n
+        run: npm run check:i18n
+
+      # check:seo reads dist/, so the production build comes first (as in deploy-landing.sh)
+      - name: Build
+        run: npm run build
+
+      - name: SEO pages
+        run: npm run check:seo
